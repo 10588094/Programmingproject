@@ -27,7 +27,7 @@ use disorder, anxiety disorder, eating disorder, autism, ADHD
 ## Prequisitions
 **Data source**: I will use the DALY data for 2000, 2005, 2010 and 2015. DALY is a measurement of
 the gap between current health status and an ideal health situation. The data has to be converted 
-from csv to json. [World Health Organization - Disease Burden 2000-2015](http://www.who.int/healthinfo/global_burden_disease/estimates/en/index2.html)
+from csv to json. [World Health Organization - Disease Burden 2000-2015](http://www.who.int/healthinfo/global_burden_disease/estimates/en/index2.html)  
 **External components**: d3-tip, topojson, bootstrap  
 **Similar visualizations**: This visualization shows the number of psychiatrists
 working in mental health based on population size. This is a related subject to my project (would
