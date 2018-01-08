@@ -1,9 +1,9 @@
 # Project Proposal
 
 ## Problem
-Steeds meer mensen worden gediagnostiseerd met depressie, autisme, ADHD, etc. Dit
-beperkt mensen in hun werk, sociaal leven en prive. Vaak lijken de behandelingen
-voor deze stoornissen niet afdoende en blijven de klachten langdurig aanwezig.
+There is an increase in mental disorder diagnoses such as depression, autism, ADHD 
+and more. This results in limitations at work, social life and private life. Often 
+treatments are not sufficient and people struggle with them for a long time.  
 
 ## Solution
 To prevent/treat a disorder it is essential to understand the disorder. An
@@ -24,7 +24,7 @@ use disorder, anxiety disorder, eating disorder, autism, ADHD
 **Choose a sex** female, male, both (button?)
 **Choose an age** 0-4, 5-14, 15-29, 30-49, 50-59, 60-69, 70 (Dropdown?)
 
-![](Programmingproject/ProjectProposal.png)
+![](Programmingproject/ProjectProposal.jpeg)
 
 ## Prequisitions
 **Data source**: The data has to be converted from csv to json
