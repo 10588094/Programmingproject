@@ -10,13 +10,13 @@ To prevent/treat a disorder it is essential to understand the disorder. An
 overview of disorder prevalence over the world can help in finding possible
 causes for the increase in diagnoses and better understanding the disorder.
 
-###Main features
+### Main features @cr
 **Dropdown menu** depressive disorder, bipolar disorder, schizophrenia, alcohol/drugs
 use disorder, anxiety disorder, eating disorder, autism, ADHD
 **Slide function** 2000, 2005, 2010, 2015
 **On click (map)** select a country, all countries on the map where data is available
 
-###Optional features
+### Optional features
 **On hover (map)** show country disorder information
 **On hover (pie chart)** show more information pie piece
 **On click (pie chart)** choose disorder, instead or next to dropdown menu
