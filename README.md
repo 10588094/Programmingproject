@@ -22,7 +22,7 @@ use disorder, anxiety disorder, eating disorder, autism, ADHD
 **On click (pie chart):** choose disorder, instead or next to dropdown menu  
 **On hover (line graph):** show more information for line
 
-![image](doc/projectProposal.png)
+![image](doc/projectProposal2.png)
 
 ## Prequisitions
 **Data source**: I will use the DALY data for 2000, 2005, 2010 and 2015. DALY is a measurement of
