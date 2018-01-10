@@ -7,9 +7,9 @@ import csv
 
 # Open csv file and make a dict
 with open('data/csv/DALY-2015.csv', 'r') as infile:
-	fieldnames = ['Country', 'All', 'Depressive disorders', 'Bipolar disorder', 'Schizophrenia',
-    'Alcohol use disorders', 'Drug use disorders', 'Anxiety disorders', 'Eating disorders',
-    'Autism and Asperger syndrome', 'Attention deficit/hyperactivity syndrome']
+	fieldnames = ['country', 'all', 'depressive', 'bipolar', 'schizophrenia',
+    'alcoholUse', 'drugUse', 'anxiety', 'eating',
+    'autism', 'ADHD']
 	reader = csv.DictReader(infile, fieldnames)
 	reader = list(reader)
 
