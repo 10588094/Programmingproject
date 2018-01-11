@@ -9,7 +9,7 @@ import csv
 with open('data/csv/DALY-2015.csv', 'r') as infile:
 	fieldnames = ['country', 'all', 'depressive', 'bipolar', 'schizophrenia',
     'alcoholUse', 'drugUse', 'anxiety', 'eating',
-    'autism', 'ADHD']
+    'autism', 'adhd']
 	reader = csv.DictReader(infile, fieldnames)
 	reader = list(reader)
 
