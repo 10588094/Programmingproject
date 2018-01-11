@@ -1,5 +1,7 @@
 function drawChart(DALYdata) {
 
+    data = DALYdata;
+
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
         width = 200,
         height = 500;

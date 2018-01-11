@@ -17,12 +17,10 @@ use disorder, anxiety disorder, eating disorder, autism, ADHD
 ***Optional***   
 **Choose sex:** female, male, both (button?)  
 **Choose age:** 0-4, 5-14, 15-29, 30-49, 50-59, 60-69, 70 (Dropdown?)
-**On hover (map):** show country disorder information  
-**On hover (pie chart):** show more information pie piece  
-**On click (pie chart):** choose disorder, instead or next to dropdown menu  
+**On hover (map):** show country disorder information   
 **On hover (line graph):** show more information for line
 
-![image](doc/projectProposal2.png)
+![image](doc/projectProposal3.png)
 
 ## Prequisitions
 **Data source**: I will use the DALY data for 2000, 2005, 2010 and 2015. DALY is a measurement of
