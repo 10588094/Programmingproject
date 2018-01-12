@@ -1,3 +1,5 @@
+[Link to project](https://10588094.github.io/project/disorderPrevalence.html)  
+
 # Project Proposal
 
 **Problem** There is an increase in diagnoses of mental disorders such as depression, autism,
