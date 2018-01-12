@@ -2,6 +2,8 @@ function drawChart(DALYdata) {
 
     data = DALYdata;
 
+    // if disorder ==
+
     var margin = {top: 20, right: 30, bottom: 30, left: 40},
         width = 200,
         height = 500;
@@ -29,6 +31,9 @@ function drawChart(DALYdata) {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // x.domain(data.map(function(d) { return d.date; }));
+    // y.domain([0, d3.max(data, function(d) { return d.; })]);
 
     // Make x axis
     chart.append("g")
