@@ -5,26 +5,22 @@
 <head>
     <title>Disorder Prevalence</title>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <script src="https://d3js.org/d3-queue.v3.min.js"></script>
-    <script src="data/datamaps.world.min.js"></script>
-    <script src="js/onLoad.js"></script>
-    <script src="js/loadData.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/barChart.js"></script>
-    <script src="js/parallel.js"></script>
+    <script src="code/js/onLoad.js"></script>
+    <script src="code/js/loadData.js"></script>
+    <script src="code/js/map.js"></script>
+    <script src="code/js/barChart.js"></script>
+    <script src="code/js/parallel.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/project.css">
-    <link rel="stylesheet" type="text/css" href="css/barChart.css">
+    <link rel="stylesheet" type="text/css" href="code/css/project.css">
 </head>
 <body>
 
 <div class="jumbotron">
   <div class="container text-right">
-    <h1>Image and text</h1>
+    <h1>Disorder Prevalence</h1>
     <p>info about visualization</p>
     <p>scroll to visualization</p>
     <p>.</p>
@@ -37,17 +33,12 @@
   </div>
 </div>
 
-<div class="container-fluid text-center">
-  <h3>Disorder Prevalence</h3><br>
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-4" id="barChart">
-      <p>Bar Chart</p>
-    </div>
-    <div class="col-md-8" id="map">
-      <p>Map</p>
-    </div>
+    <div class="col-md-4" id="barChart"></div>
+    <div class="col-md-8" id="map"></div>
   </div>
-</div><br>
+</div>
 
 <div class="container-fluid text-center">
   <div class="row">
