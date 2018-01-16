@@ -10,7 +10,7 @@ window.onload = function() {
 
     // queue data
     d3.queue()
-        .defer(d3.json, "data/json/world-countries.json")
+        .defer(d3.json, "data/json/custom.geo.json")
         .defer(d3.json, "data/json/DALY-2000.json")
         .defer(d3.json, "data/json/DALY-2005.json")
         .defer(d3.json, "data/json/DALY-2010.json")
@@ -52,5 +52,5 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
 
     drawMap(mapData, DALYdata);
     drawChart(DALYdata);
-    // drawParallel(d   ata2000);
+    drawParallel(DALYdata);
 }

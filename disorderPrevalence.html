@@ -5,10 +5,11 @@
 <head>
     <title>Disorder Prevalence</title>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <script src="https://d3js.org/d3-queue.v3.min.js"></script>
-    <script src="code/js/onLoad.js"></script>
+    <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="//d3js.org/d3.geo.projection.v0.min.js"></script>
     <script src="code/js/loadData.js"></script>
     <script src="code/js/map.js"></script>
     <script src="code/js/barChart.js"></script>
@@ -19,24 +20,27 @@
 <body>
 
 <div class="jumbotron">
-  <div class="container text-right">
+  <div class="container text-right" "img-responsive">
     <h1>Disorder Prevalence</h1>
     <p>info about visualization</p>
-    <p>scroll to visualization</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
   </div>
 </div>
+
+
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4" id="barChart"></div>
     <div class="col-md-8" id="map"></div>
+    <div class="col-md-8" id="slider"></div>
   </div>
 </div>
 

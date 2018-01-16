@@ -1,11 +1,12 @@
 function drawChart(DALYdata) {
 
     data = DALYdata;
+    // disorder = DALYdata
+    // country =
+    console.log(d3.keys(data)[0])
 
-    // if disorder ==
-
-    var margin = {top: 20, right: 30, bottom: 30, left: 40},
-        width = 200,
+    var margin = {top: 20, right: 30, bottom: 30, left: 60},
+        width = 350,
         height = 500;
 
     // Set the ranges
@@ -32,8 +33,8 @@ function drawChart(DALYdata) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // x.domain(data.map(function(d) { return d.date; }));
-    // y.domain([0, d3.max(data, function(d) { return d.; })]);
+    x.domain([d3.keys(data)[0], d3.keys(data)[1], d3.keys(data)[2], d3.keys(data)[3]]);
+    y.domain([0, d3.max(data[2015], function(d) { return d.all;})]);
 
     // Make x axis
     chart.append("g")
@@ -51,4 +52,30 @@ function drawChart(DALYdata) {
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("DALY");
+
+    // for (var year in data) {
+    //     if (data.hasOwnProperty(year)) {
+    //         dataYear = data[year];
+    //         // year.country = "Afghanistan"
+    //         console.log(dataYear)
+    //         // console.log(d.year)
+    //     }
+    // }
+
+    // // set DALY data by country to use in loop of map data
+    // var disorderByCountry = {};
+    // dataYear.forEach(function(d) { disorderByCountry[d.country] = d.depressive; console.log(d.depressive) });
+    //
+    // // dataYear.forEach(function(d) { d.disorder = d.depressive; console.log(d.disorder)});
+    // // data.forEach(function(d) { d.year = dataYear})
+    //
+    // // Make bars
+    // chart.selectAll(".bar")
+    //     .data(data)
+    //     .enter().append("rect")
+    //     .attr("class", "bar")
+    //     .attr("x", function(d) { return x(d.date); })
+    //     .attr("y", function(d) { return y(d.disorder); })
+    //     .attr("height", function(d) { return height - y(d.disorder); })
+    //     .attr("width", x.rangeBand())
 }
