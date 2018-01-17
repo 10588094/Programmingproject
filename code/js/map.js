@@ -1,8 +1,7 @@
 function drawMap(mapData, DALYdata) {
 
-    data = DALYdata[2015];
+    data = DALYdata[0]['data'];
 
-    // console.log(data)
     // var margin = {top: 20, right: 20, bottom: 30, left: 30},
     var height = 550,
         width = 800;
@@ -18,7 +17,7 @@ function drawMap(mapData, DALYdata) {
     var colorMap = d3.scale.log()
         .base(100000)
         .domain([0.5, 25710.9])
-        .range(['#efeb00', '#ff0000']);
+        .range(['#efeb00', '#ce0000']);
 
     // Add the d3 chart canvas
     var map = d3.select("#map").append("svg")
@@ -28,7 +27,10 @@ function drawMap(mapData, DALYdata) {
 
     // set DALY data by country to use in loop of map data
     var disorderByCountry = {};
-    data.forEach(function(d) { disorderByCountry[d.country] = d.depressive; });
+    for (country in data) {
+        var d = data[country]
+        disorderByCountry[country] = d.depressive;
+    };
 
     // Draw map
     map.append("g")
@@ -37,56 +39,62 @@ function drawMap(mapData, DALYdata) {
         .data(mapData.features)
         .enter().append("path")
         .attr("d", path)
-        .style("fill", function(d) { return colorMap(disorderByCountry[d.properties.name]); })
+        .style("fill", '#a5a4a0')
+        .style("fill", function(d) {
+            return colorMap(disorderByCountry[d.properties.name]);
+        })
         .style('stroke', 'white')
-        .style('stroke-width', 1.5)
+        .style('stroke-width', 0.8)
         .style("opacity", 0.8)
 
-        // tooltips
-        .style("stroke","white")
-        .style('stroke-width', 0.3)
-        .on('mouseover',function(d) {
-          tip.show(d);
+        .on('mouseover', function(d) {
+            tip.show(d);
 
-        d3.select(this)
-            .style("opacity", 1)
-            .style("stroke","white")
-            .style("stroke-width",3);
+            d3.select(this)
+                .style("opacity", 1)
+                .style("stroke", "white")
+                .style("stroke-width", 3);
         })
 
         .on('mouseout', function(d) {
             tip.hide(d);
 
-        d3.select(this)
-            .style("opacity", 0.8)
-            .style("stroke","white")
-            .style("stroke-width",0.3);
-
-        d3.selectAll("#inf").remove();
-    });
+            d3.select(this)
+                .style("opacity", 0.8)
+                .style("stroke", "white")
+                .style("stroke-width", 0.8);
+        });
 
     // Set tooltips
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function(d) {
-          return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>DALY: </strong><span class='details'>" + disorderByCountry[d.properties.name] +"</span>";
-    });
+            return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>DALY: </strong><span class='details'>" + disorderByCountry[d.properties.name] + "</span>";
+        });
 
     map.call(tip);
 
     // var yearSteps = 5;
-    //     minYear = d3.keys(data)[0];
+    year = d3.keys(data)[0];
     //     maxYear = d3.keys(data)[3];
-    //
-    // d3.select('#slider').call(d3.slider()
-    //     .axis(true).min(minYear).max(maxYear).step(yearSteps)
-    //     .on("slide", function(evt, value) {
-    //     var newData = _(site_data).filter( function(site) {
-    //         return site.created_at < value;
-    //         })
-    //     })
-    // );
 
-    // d3.slider().axis(true).min(2000).max(2015).step(5)
+    //
+    var slider = d3.select("#slider").insert("p", "first-child").append("input")
+        .attr("type", "range")
+        .attr("min", "2000")
+        .attr("max", "2015")
+        .attr("value", year)
+        .attr("id", "currentYear")
+
+    // slider.insert("g", ".track-overlay")
+    // .attr("class", "ticks")
+    // .attr("transform", "translate(0," + 18 + ")")
+    // .selectAll("text")
+    // .data(x.ticks(10))
+    // .enter().append("text")
+    // .attr("x", x)
+    // .attr("text-anchor", "middle")
+    // .text(function(d) { return d + "°"; });
+
 }

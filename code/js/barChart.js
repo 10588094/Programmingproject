@@ -2,16 +2,15 @@ function drawChart(DALYdata) {
 
     data = DALYdata;
     // disorder = DALYdata
-    // country =
-    console.log(d3.keys(data)[0])
+    // country
 
-    var margin = {top: 20, right: 30, bottom: 30, left: 60},
-        width = 350,
+    var margin = {top: 20, right: 30, bottom: 20, left: 60},
+        width = 200,
         height = 500;
 
     // Set the ranges
     var x = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .1);
+        .rangeRoundBands([0, width], .2);
 
     var y = d3.scale.linear()
         .range([height, 0]);
@@ -33,8 +32,19 @@ function drawChart(DALYdata) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    x.domain([d3.keys(data)[0], d3.keys(data)[1], d3.keys(data)[2], d3.keys(data)[3]]);
-    y.domain([0, d3.max(data[2015], function(d) { return d.all;})]);
+    dataYear = data[3]['data']
+
+    var disorderByCountry = []
+    for (country in dataYear) {
+        var d = dataYear['Afghanistan']
+        disorderByCountry.push(d.depressive);
+    };
+
+    // disorderByCountry = data
+    console.log(d3.max(disorderByCountry))
+
+    x.domain([data[0]['year'],data[1]['year'], data[2]['year'], data[3]['year']]);
+    y.domain([0, d3.max(disorderByCountry)]);
 
     // Make x axis
     chart.append("g")
@@ -53,29 +63,38 @@ function drawChart(DALYdata) {
         .style("text-anchor", "end")
         .text("DALY");
 
-    // for (var year in data) {
-    //     if (data.hasOwnProperty(year)) {
-    //         dataYear = data[year];
-    //         // year.country = "Afghanistan"
-    //         console.log(dataYear)
-    //         // console.log(d.year)
-    //     }
-    // }
+    // var country = 'Afghanistan'
+    //
+    // dataByCountry = {}
+    // data.forEach(function(d){
+    //     dataByCountry.push(d.data[country])
+    // });
+    // console.log(dataByCountry)
 
-    // // set DALY data by country to use in loop of map data
-    // var disorderByCountry = {};
-    // dataYear.forEach(function(d) { disorderByCountry[d.country] = d.depressive; console.log(d.depressive) });
-    //
-    // // dataYear.forEach(function(d) { d.disorder = d.depressive; console.log(d.disorder)});
-    // // data.forEach(function(d) { d.year = dataYear})
-    //
-    // // Make bars
-    // chart.selectAll(".bar")
-    //     .data(data)
-    //     .enter().append("rect")
-    //     .attr("class", "bar")
-    //     .attr("x", function(d) { return x(d.date); })
-    //     .attr("y", function(d) { return y(d.disorder); })
-    //     .attr("height", function(d) { return height - y(d.disorder); })
-    //     .attr("width", x.rangeBand())
+    // Make bars
+    chart.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d.year); })
+        .attr("y", function(d) { return y(d.data['Afghanistan']['depressive']); })
+        .attr("height", function(d) { return height - y(d.data['Afghanistan']['depressive']); })
+        .attr("width", x.rangeBand())
+
+    // Change color of bars and show text when hovering over
+    .on("mouseover",function(d, i) {
+        d3.select(this).attr("r", 10).style("fill", '#c42d00')
+        chart.append("text")
+            .attr("class", "toDelete")
+            .attr("x", x(d.year) + (x.rangeBand()/2))
+            .attr("y", y(d.data['Afghanistan']['depressive'] - 2))
+            .style("text-anchor", "middle")
+            .text(d.data['Afghanistan']['depressive'])
+        })
+
+    .on("mouseout", function(d) {
+        d3.select(this).attr("r", 5.5).style("fill", '#ce5c00')
+        d3.selectAll(".toDelete")
+            .style("visibility", "hidden")
+        })
 }

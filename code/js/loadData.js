@@ -22,17 +22,18 @@ window.onload = function() {
 function loadData(error, mapData, data2000, data2005, data2010, data2015) {
     if (error) throw error;
 
-    var DALYdata = {
-        2000: data2000,
-        2005: data2005,
-        2010: data2010,
-        2015: data2015
-    };
+    var DALYdata = [
+        {year: 2000, data: data2000},
+        {year: 2005, data: data2005},
+        {year: 2010, data: data2010},
+        {year: 2015, data: data2015}
+    ];
 
-    for (var year in DALYdata) {
-        if (DALYdata.hasOwnProperty(year)) {
-            var data = DALYdata[year];
-            data.forEach(function(d) {
+    DALYdata.forEach(function(year) {
+        var yearData = year['data']
+        for (country in yearData) {
+            if (yearData.hasOwnProperty(country)) {
+                var d = yearData[country]
                 d.population = +d.population;
                 d.all = +d.all;
                 d.depressive = +d.depressive;
@@ -44,13 +45,13 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
                 d.eating = +d.eating;
                 d.autism = +d.autism;
                 d.adhd = +d.adhd;
-            })
+            }
         }
-    };
+    });
 
-    // console.log(DALYdata);
+    // console.log(DALYdata)
 
     drawMap(mapData, DALYdata);
     drawChart(DALYdata);
-    drawParallel(DALYdata);
+    // drawParallel(DALYdata);
 }

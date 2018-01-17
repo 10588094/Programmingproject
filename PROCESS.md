@@ -19,3 +19,9 @@ geen data van antartica
 - problemen met de slider: d3.slider() is geen functie, mis ik iets mijn html? Kan
 het niet vinden tot nu toe
 - morgen eerst de data uitzoeken / hulp vragen
+
+### Woensdag 17 januari
+- kleuren van de kaart aangepast
+- lang bezig geweest om data in een andere structuur te zetten
+- bars in barchart gemaakt
+- slider zonder functionaliteit gemaakt

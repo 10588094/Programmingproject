@@ -34,8 +34,14 @@ pointer-events: none;
  color:white;
 }
 
-#barChart {
+#slider {
     /* background: darkblue; */
+    float: right;
+}
+
+#barChart rect {
+    /* background: darkblue; */
+     fill: #ce5c00;
 }
 
 .axis path,
