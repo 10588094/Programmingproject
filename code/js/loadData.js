@@ -49,9 +49,12 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
         }
     });
 
+    var disorderChoice = 'depressive';
+    var countryChoice = 'India';
+    var yearChoice = 3;
     // console.log(DALYdata)
 
-    drawMap(mapData, DALYdata);
-    drawChart(DALYdata);
-    // drawParallel(DALYdata);
+    drawMap(mapData, DALYdata, disorderChoice, yearChoice);
+    drawChart(DALYdata, disorderChoice, countryChoice);
+    drawParallel(DALYdata, yearChoice);
 }

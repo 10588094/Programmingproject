@@ -1,6 +1,8 @@
-function drawMap(mapData, DALYdata) {
+function drawMap(mapData, DALYdata, disorderChoice, yearChoice) {
 
-    data = DALYdata[0]['data'];
+    var year = yearChoice;
+    data = DALYdata[year]['data'];
+    var disorder = disorderChoice;
 
     // var margin = {top: 20, right: 20, bottom: 30, left: 30},
     var height = 550,
@@ -27,9 +29,9 @@ function drawMap(mapData, DALYdata) {
 
     // set DALY data by country to use in loop of map data
     var disorderByCountry = {};
-    for (country in data) {
-        var d = data[country]
-        disorderByCountry[country] = d.depressive;
+    for (countries in data) {
+        var d = data[countries]
+        disorderByCountry[countries] = d[disorder];
     };
 
     // Draw map

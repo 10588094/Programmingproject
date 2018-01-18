@@ -25,3 +25,9 @@ het niet vinden tot nu toe
 - lang bezig geweest om data in een andere structuur te zetten
 - bars in barchart gemaakt
 - slider zonder functionaliteit gemaakt
+
+### Donderdag 18 januari
+- Gezorgd dat land, jaar en stoornis in loadData kunnen worden ingesteld, zodat
+een update functie makkelijker implementeren wordt later
+- nog een keer gekeken naar parallel coordinates, maar nog steeds niet begrepen.
+Helaas kon ik geen vragen stellen want het dak was er afgevallen :(

@@ -1,12 +1,12 @@
-function drawChart(DALYdata) {
+function drawChart(DALYdata, disorderChoice, countryChoice) {
 
     data = DALYdata;
-    // disorder = DALYdata
-    // country
+    var disorder = disorderChoice;
+    var country = countryChoice;
 
     var margin = {top: 20, right: 30, bottom: 20, left: 60},
-        width = 200,
-        height = 500;
+        width = 190,
+        height = 480;
 
     // Set the ranges
     var x = d3.scale.ordinal()
@@ -32,16 +32,11 @@ function drawChart(DALYdata) {
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    dataYear = data[3]['data']
-
     var disorderByCountry = []
-    for (country in dataYear) {
-        var d = dataYear['Afghanistan']
-        disorderByCountry.push(d.depressive);
-    };
-
-    // disorderByCountry = data
-    console.log(d3.max(disorderByCountry))
+    data.forEach(function(years) {
+        var score = years.data[country][disorder]
+        disorderByCountry.push(score);
+    });
 
     x.domain([data[0]['year'],data[1]['year'], data[2]['year'], data[3]['year']]);
     y.domain([0, d3.max(disorderByCountry)]);
@@ -63,23 +58,16 @@ function drawChart(DALYdata) {
         .style("text-anchor", "end")
         .text("DALY");
 
-    // var country = 'Afghanistan'
-    //
-    // dataByCountry = {}
-    // data.forEach(function(d){
-    //     dataByCountry.push(d.data[country])
-    // });
-    // console.log(dataByCountry)
-
     // Make bars
     chart.selectAll(".bar")
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
         .attr("x", function(d) { return x(d.year); })
-        .attr("y", function(d) { return y(d.data['Afghanistan']['depressive']); })
-        .attr("height", function(d) { return height - y(d.data['Afghanistan']['depressive']); })
+        .attr("y", function(d) { return y(d.data[country][disorder]); })
+        .attr("height", function(d) { return height - y(d.data[country][disorder]); })
         .attr("width", x.rangeBand())
+
 
     // Change color of bars and show text when hovering over
     .on("mouseover",function(d, i) {
@@ -87,9 +75,9 @@ function drawChart(DALYdata) {
         chart.append("text")
             .attr("class", "toDelete")
             .attr("x", x(d.year) + (x.rangeBand()/2))
-            .attr("y", y(d.data['Afghanistan']['depressive'] - 2))
+            .attr("y", y(d.data[country][disorder] - 2))
             .style("text-anchor", "middle")
-            .text(d.data['Afghanistan']['depressive'])
+            .text(d.data[country][disorder])
         })
 
     .on("mouseout", function(d) {

@@ -40,7 +40,7 @@ pointer-events: none;
 }
 
 #barChart rect {
-    /* background: darkblue; */
+    /* background: lightblue; */
      fill: #ce5c00;
 }
 
