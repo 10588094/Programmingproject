@@ -31,3 +31,17 @@ het niet vinden tot nu toe
 een update functie makkelijker implementeren wordt later
 - nog een keer gekeken naar parallel coordinates, maar nog steeds niet begrepen.
 Helaas kon ik geen vragen stellen want het dak was er afgevallen :(
+
+### Maandag 22 januari
+- bij het maken van de update functie voor disorders maak ik nu de hele visualisatie
+opnieuw. Ik probeerde om alleen de bars van de barchart in een updateFunctie te zetten
+maar moest bijna alle code daarin zetten. De y-as moet daar immers ook in en de
+'.on mouseover' functie ook, want deze is gelinkt aan de bars. Daarom heb ik ervoor
+gekozen om toch de hele visualisatie opnieuw te laden. Als ik aan het eind nog tijd
+heb kan ik kijken hoe ik dit efficenter kan maken.
+- de parallel coordinates is nu niet heel nuttig omdat er twee outliers zijn, waarschijnlijk
+China en India. Morgen kijken of ik hier een log functie kan gebruiken om de assen
+te schalen.
+- ik heb besloten om een aparte div en js bestand voor de titel te maken. Ik wilde
+dat de titel boven in het midden kwam dus kon daarom niet bij een andere visualisatie.
+Ook moet hij wel geupdate kunnen worden dus dat is handiger in js dan in html. 

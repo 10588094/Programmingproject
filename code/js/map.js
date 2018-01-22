@@ -1,17 +1,18 @@
-function drawMap(mapData, DALYdata, disorderChoice, yearChoice) {
+function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
 
     var year = yearChoice;
-    data = DALYdata[year]['data'];
     var disorder = disorderChoice;
+    var country = countryChoice;
+    data = DALYdata[year]['data'];
 
-    // var margin = {top: 20, right: 20, bottom: 30, left: 30},
-    var height = 550,
+    var margin = {top: 30, right: 20, bottom: 30, left: 30},
+        height = 500,
         width = 800;
 
     // scale map
     var projection = d3.geo.mercator()
-        .scale(125)
-        .translate([width / 2, height / 1.5]);
+        .scale(130)
+        .translate([width / 2, height / 1.4]);
 
     var path = d3.geo.path().projection(projection)
 
@@ -21,11 +22,22 @@ function drawMap(mapData, DALYdata, disorderChoice, yearChoice) {
         .domain([0.5, 25710.9])
         .range(['#efeb00', '#ce0000']);
 
+    // Set tooltips
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([0, 0])
+        .html(function(d) {
+            return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>DALY: </strong><span class='details'>" + disorderByCountry[d.properties.name] + "</span>";
+        });
+
     // Add the d3 chart canvas
     var map = d3.select("#map").append("svg")
+        .attr("class", "mapVis")
         .attr("width", "100%")
-        .attr("height", height)
+        .attr("height", height + margin.top + margin.bottom)
         .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 
     // set DALY data by country to use in loop of map data
     var disorderByCountry = {};
@@ -65,29 +77,26 @@ function drawMap(mapData, DALYdata, disorderChoice, yearChoice) {
                 .style("opacity", 0.8)
                 .style("stroke", "white")
                 .style("stroke-width", 0.8);
-        });
+        })
 
-    // Set tooltips
-    var tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-10, 0])
-        .html(function(d) {
-            return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>DALY: </strong><span class='details'>" + disorderByCountry[d.properties.name] + "</span>";
-        });
+        .on('click', function(d) {
+            tip.hide(d);
+
+            var countryChoice = d.properties.name;
+
+            updateData (mapData, DALYdata, disorder, countryChoice, year);
+        })
 
     map.call(tip);
 
-    // var yearSteps = 5;
-    year = d3.keys(data)[0];
-    //     maxYear = d3.keys(data)[3];
 
-    //
-    var slider = d3.select("#slider").insert("p", "first-child").append("input")
-        .attr("type", "range")
-        .attr("min", "2000")
-        .attr("max", "2015")
-        .attr("value", year)
-        .attr("id", "currentYear")
+    // var slider = d3.select("#slider").insert("p", "first-child").append("input")
+    //     .attr("class", "vis")
+    //     .attr("type", "range")
+    //     .attr("min", "2000")
+    //     .attr("max", "2015")
+    //     .attr("value", year)
+    //     .attr("id", "currentYear")
 
     // slider.insert("g", ".track-overlay")
     // .attr("class", "ticks")

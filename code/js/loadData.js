@@ -18,7 +18,6 @@ window.onload = function() {
         .await(loadData);
 }
 
-
 function loadData(error, mapData, data2000, data2005, data2010, data2015) {
     if (error) throw error;
 
@@ -33,28 +32,84 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
         var yearData = year['data']
         for (country in yearData) {
             if (yearData.hasOwnProperty(country)) {
-                var d = yearData[country]
+                var d = yearData[country];
                 d.population = +d.population;
-                d.all = +d.all;
-                d.depressive = +d.depressive;
-                d.bipolar = +d.bipolar;
-                d.schizophrenia = +d.schizophrenia;
-                d.alcoholUse = +d.alcoholUse;
-                d.drugUse = +d.drugUse;
-                d.anxiety = +d.anxiety;
-                d.eating = +d.eating;
-                d.autism = +d.autism;
-                d.adhd = +d.adhd;
+                d.All = +d.All;
+                d.Depressive = +d.Depressive;
+                d.Bipolar = +d.Bipolar;
+                d.Schizophrenic = +d.Schizophrenic;
+                d.AlcoholUse = +d.AlcoholUse;
+                d.DrugUse = +d.DrugUse;
+                d.Anxiety = +d.Anxiety;
+                d.Eating = +d.Eating;
+                d.Autism = +d.Autism;
+                d.Adhd = +d.Adhd;
             }
         }
     });
 
-    var disorderChoice = 'depressive';
-    var countryChoice = 'India';
+    var disorderChoice = 'All';
+    var countryChoice = 'Netherlands';
     var yearChoice = 3;
-    // console.log(DALYdata)
 
-    drawMap(mapData, DALYdata, disorderChoice, yearChoice);
-    drawChart(DALYdata, disorderChoice, countryChoice);
-    drawParallel(DALYdata, yearChoice);
+    updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
+}
+
+function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
+
+    d3.selectAll(".dropdownOptions")
+        .on("click", function() {
+            var disorder = this.getAttribute("value")
+
+            if(disorder == "all") {
+                var disorderChoice = 'All'
+            }
+            if(disorder == "depressive") {
+                var disorderChoice = 'Depressive'
+            }
+            if(disorder == "bipolar") {
+                var disorderChoice = 'Bipolar'
+            }
+            if(disorder == "schizophrenia") {
+                var disorderChoice = 'Schizophrenic'
+            }
+            if(disorder == "alcoholUse") {
+                var disorderChoice = 'AlcoholUse'
+            }
+            if(disorder == "drugUse") {
+                var disorderChoice = 'DrugUse'
+            }
+            if(disorder == "anxiety") {
+                var disorderChoice = 'Anxiety'
+            }
+            if(disorder == "eating") {
+                var disorderChoice = 'Eating'
+            }
+            if(disorder == "autism") {
+                var disorderChoice = 'Autism'
+            }
+            if(disorder == "adhd") {
+                var disorderChoice = 'Adhd'
+            }
+
+            d3.selectAll(".chartVis").remove();
+            d3.selectAll(".mapVis").remove();
+            d3.selectAll(".parallelVis").remove();
+            d3.selectAll(".title").remove();
+
+            drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+            drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+            drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+            updateTitle(disorderChoice, countryChoice, yearChoice);
+        });
+
+    d3.selectAll(".chartVis").remove();
+    d3.selectAll(".mapVis").remove();
+    d3.selectAll(".parallelVis").remove();
+    d3.selectAll(".title").remove();
+
+    drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    updateTitle(disorderChoice, countryChoice, yearChoice);
 }

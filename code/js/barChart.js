@@ -1,10 +1,10 @@
-function drawChart(DALYdata, disorderChoice, countryChoice) {
+function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
 
     data = DALYdata;
     var disorder = disorderChoice;
     var country = countryChoice;
 
-    var margin = {top: 20, right: 30, bottom: 20, left: 60},
+    var margin = {top: 30, right: 30, bottom: 20, left: 60},
         width = 190,
         height = 480;
 
@@ -27,6 +27,7 @@ function drawChart(DALYdata, disorderChoice, countryChoice) {
 
     // Add the d3 chart canvas
     var chart = d3.select("#barChart").append("svg")
+        .attr("class", "chartVis")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -52,11 +53,11 @@ function drawChart(DALYdata, disorderChoice, countryChoice) {
         .attr("class", "y axis")
         .call(yAxis)
         .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 7)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("DALY");
+            .attr("y", height - 480)
+            .attr("x", width - 210)
+            .style("text-anchor", "end")
+            .style("text-decoration", "bold")
+            .text("DALY")
 
     // Make bars
     chart.selectAll(".bar")
@@ -85,4 +86,5 @@ function drawChart(DALYdata, disorderChoice, countryChoice) {
         d3.selectAll(".toDelete")
             .style("visibility", "hidden")
         })
+
 }

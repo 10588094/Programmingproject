@@ -16,10 +16,10 @@ with open('../../data/csv/DALY-2015.csv', 'r') as infile:
 
     reader1 = {}
     for each in reader:
-        reader1[each['country']] = {'population': each['population'], 'all': each['all'],
-        'depressive': each['depressive'], 'bipolar': each['bipolar'], 'schizophrenia': each['schizophrenia'],
-        'alcoholUse': each['alcoholUse'], 'drugUse': each['drugUse'], 'anxiety': each['anxiety'],
-        'eating': each['eating'], 'adhd': each['adhd'] }
+        reader1[each['country']] = {'population': each['population'], 'All': each['all'],
+        'Depressive': each['depressive'], 'Bipolar': each['bipolar'], 'Schizophrenic': each['schizophrenia'],
+        'AlcoholUse': each['alcoholUse'], 'DrugUse': each['drugUse'], 'Anxiety': each['anxiety'],
+        'Eating': each['eating'], 'Autism': each['autism'], 'Adhd': each['adhd'] }
 
     # Write data to an JSON file
     with open('../../data/json/DALY-2015.json', 'w') as outfile:
