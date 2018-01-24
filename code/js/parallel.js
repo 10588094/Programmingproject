@@ -1,6 +1,6 @@
 function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
 
-    var year = yearChoice;
+    var year = 1;
     var country = countryChoice;
     var disorder = disorderChoice;
 
@@ -9,8 +9,8 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
 
     var dataList = []
 
-    for (country in data) {
-        dataList.push(data[country])
+    for (countries in data) {
+        dataList.push(data[countries])
     }
 
     var margin = {top: 30, right: 10, bottom: 10, left: 10},
@@ -33,11 +33,20 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    // to make log scale possible
+    for (countries in data) {
+        if (data[countries].Eating == 0) {
+            data[countries].Eating = 0.01;
+        }
+        if (data[countries].Adhd == 0) {
+            data[countries].Adhd = 0.01;
+        }
+    }
 
   // Extract the list of dimensions and create a scale for each.
   x.domain(dimensions = d3.keys(dataList[0]).filter(function(d) {
-    return d != "population" && d != "All" && (y[d] = d3.scale.linear()
-        // .base(10000)
+    return d != "population" && d != "All" && (y[d] =  d3.scale.log()
+        .base(2)
         .domain(d3.extent(dataList, function(p) { return p[d]; }))
         .range([height, 0]));
     }));
@@ -58,55 +67,58 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
       .enter().append("path")
         .attr("d", path);
 
+        console.log(dataList)
+        // console.log(data[country])
+
     // Add a group element for each dimension.
     var g = parallel.selectAll(".dimension")
         .data(dimensions)
-      .enter().append("g")
-        .attr("class", "dimension")
-        .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
-        .call(d3.behavior.drag()
-          .origin(function(d) { return {x: x(d)}; })
-          .on("dragstart", function(d) {
-            dragging[d] = x(d);
-            background.attr("visibility", "hidden");
-          })
-          .on("drag", function(d) {
+        .enter().append("g")
+            .attr("class", "dimension")
+            .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
+            .call(d3.behavior.drag()
+            .origin(function(d) { return {x: x(d)}; })
+            .on("dragstart", function(d) {
+                dragging[d] = x(d);
+                background.attr("visibility", "hidden");
+            })
+        .on("drag", function(d) {
             dragging[d] = Math.min(width, Math.max(0, d3.event.x));
             foreground.attr("d", path);
             dimensions.sort(function(a, b) { return position(a) - position(b); });
             x.domain(dimensions);
             g.attr("transform", function(d) { return "translate(" + position(d) + ")"; })
-          })
-          .on("dragend", function(d) {
+        })
+        .on("dragend", function(d) {
             delete dragging[d];
             transition(d3.select(this)).attr("transform", "translate(" + x(d) + ")");
             transition(foreground).attr("d", path);
             background
                 .attr("d", path)
-              .transition()
+                .transition()
                 .delay(500)
                 .duration(0)
                 .attr("visibility", null);
-          }));
+        }));
 
-          // Add an axis and title.
-          g.append("g")
-              .attr("class", "axis")
-              .each(function(d) { d3.select(this).call(axis.scale(y[d])); })
-            .append("text")
-              .style("text-anchor", "middle")
-              .attr("y", -9)
-              .text(function(d) { return d; });
+    // Add an axis and title.
+    g.append("g")
+        .attr("class", "axis")
+        .each(function(d) { d3.select(this).call(axis.scale(y[d])); })
+        .append("text")
+        .style("text-anchor", "middle")
+        .attr("y", -9)
+        .text(function(d) { return d; });
 
-          // Add and store a brush for each axis.
-          g.append("g")
-              .attr("class", "brush")
-              .each(function(d) {
-                d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brushstart", brushstart).on("brush", brush));
-              })
-            .selectAll("rect")
-              .attr("x", -8)
-              .attr("width", 16);
+    // Add and store a brush for each axis.
+    g.append("g")
+        .attr("class", "brush")
+        .each(function(d) {
+            d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brushstart", brushstart).on("brush", brush));
+        })
+        .selectAll("rect")
+        .attr("x", -8)
+        .attr("width", 16);
 
 function position(d) {
   var v = dragging[d];

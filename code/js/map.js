@@ -85,7 +85,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
             var countryChoice = d.properties.name;
 
             updateData (mapData, DALYdata, disorder, countryChoice, year);
-        })
+        });
 
     map.call(tip);
 

@@ -96,11 +96,14 @@ function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoic
             d3.selectAll(".mapVis").remove();
             d3.selectAll(".parallelVis").remove();
             d3.selectAll(".title").remove();
+            // d3.selectAll(".dropdownVis").remove();
 
             drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
             drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
             drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
             updateTitle(disorderChoice, countryChoice, yearChoice);
+            dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+
         });
 
     d3.selectAll(".chartVis").remove();
@@ -112,4 +115,5 @@ function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoic
     drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
     drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
     updateTitle(disorderChoice, countryChoice, yearChoice);
+    dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
 }

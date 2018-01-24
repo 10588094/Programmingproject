@@ -87,4 +87,38 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
             .style("visibility", "hidden")
         })
 
+    .on('click', function(d) {
+
+        var year = d.year;
+
+        if (year == 2000) {
+            yearChoice = 0;
+        }
+        if (year == 2005) {
+            yearChoice = 1;
+        }
+        if (year == 2010) {
+            yearChoice = 2;
+        }
+        if (year == 2015) {
+            yearChoice = 3;
+        }
+        
+        updateData (mapData, DALYdata, disorder, country, yearChoice);
+    });
+
+    if (country == 'Netherlands') {
+        countryName = 'The Netherlands';
+    }
+    else {
+        countryName = country;
+    }
+
+    chart.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("text-decoration", "underline")
+        .text("Over time in " + countryName);
 }

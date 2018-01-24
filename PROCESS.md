@@ -44,4 +44,15 @@ China en India. Morgen kijken of ik hier een log functie kan gebruiken om de ass
 te schalen.
 - ik heb besloten om een aparte div en js bestand voor de titel te maken. Ik wilde
 dat de titel boven in het midden kwam dus kon daarom niet bij een andere visualisatie.
-Ook moet hij wel geupdate kunnen worden dus dat is handiger in js dan in html. 
+Ook moet hij wel geupdate kunnen worden dus dat is handiger in js dan in html.
+
+### Dinsdag 23 januari
+- het bleek dat de schaal op de parallel coordinates niet goed ging doordat er niet
+logaritmisch geschaald kan worden wanneer er een 0 in de dataset zit. Daarom heb ik
+besloten om alle 0 waarden in 0.01 te veranderen. Ook in de map en barchart schaal ik
+logaritmisch dus vandaag wil ik deze verandering al in loadData zetten (ipv alleen bij
+parallel coordinates).
+- Voor de dropdown met landen leek was het niet handig om de dropdown op dezelfde manier
+te maken als die voor disorders. Er zijn namelijke veel te veel landen in mijn data om
+allemaal in  mijn html te zetten. Gelukkig kwam een klasgenoot met een andere oplossing.
+Misschien pas ik deze later nog toe bij disorders voor de consistentie.
