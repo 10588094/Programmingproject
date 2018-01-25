@@ -1,4 +1,4 @@
-function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
+function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
     var year = yearChoice;
     var disorder = disorderChoice;
@@ -16,11 +16,13 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
 
     var path = d3.geo.path().projection(projection)
 
+    var colors = ['#efeb00', '#ce0000']
+
     // set colors for the map legend
     var colorMap = d3.scale.log()
         .base(100000)
         .domain([0.5, 25710.9])
-        .range(['#efeb00', '#ce0000']);
+        .range(colors);
 
     // Set tooltips
     var tip = d3.tip()
@@ -84,11 +86,34 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
 
             var countryChoice = d.properties.name;
 
-            updateData (mapData, DALYdata, disorder, countryChoice, year);
+            updateData (mapData, DALYdata, disorder, countryChoice, year, countryChoice2);
         });
 
     map.call(tip);
-    titleMap();
+
+    // Apply legend for HPI index
+    var legendMap = map.selectAll(".legendMap")
+        .data(colors)
+        .enter().append("g")
+        .attr("class", "legendMap")
+        .attr("transform", function(d, i) { return "translate(0," + i * 22 + ")"; });
+
+    // Append collored rects for legend
+    legendMap.append("rect")
+        .attr("x", width - 650)
+        .attr("y", 340)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", function(d, i){ return colors[i]; });
+
+    // // Append text to legend
+    // legendMap.append("text")
+    //     .attr("x", width - 620)
+    //     .attr("y", 350)
+    //     .attr("dy", ".35em")
+    //     .text(function(d, i){ return legendLabels[i]; });
+
+    // titleMap();
 
 function titleMap() {
 

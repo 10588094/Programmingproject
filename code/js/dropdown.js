@@ -1,4 +1,4 @@
-function dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
+function dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
     var dataList = []
 
@@ -9,13 +9,13 @@ function dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yea
         }
     });
 
-    var select = d3.select('#countriesMenu')
+    var country = d3.select('#countriesMenu0')
         .append('select')
         .attr('class', 'select')
-        .attr('id', 'dropdownVis')
+        .attr('id', 'dropdownCountry0')
         .on('change', onchange)
 
-    var options = select
+    var options = country
         .selectAll('option')
         .data(dataList).enter()
         .append('option')
@@ -24,13 +24,52 @@ function dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yea
         });
 
     function onchange() {
-        selectValue = d3.select('select').property('value')
-        countryChoice = selectValue;
-        updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
+        countryChoice = d3.select('#dropdownCountry0').property('value')
+        updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2)
     };
 }
 
-function dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
+function dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
+
+    var dataList = []
+
+    DALYdata.forEach(function(d) {
+        data = d.data;
+        for (countries in data) {
+            dataList.push(countries);
+        }
+    });
+
+    var country = d3.select('#countriesMenu1')
+        .append('select')
+        .attr('class', 'select')
+        .attr('id', 'dropdownCountry1')
+        .on('change', onchange)
+        .attr('disabled', 'disabled')
+
+    var options = country
+        .selectAll('option')
+        .data(dataList).enter()
+        .append('option')
+        .text(function(d) {
+            return d;
+        });
+
+    function onchange() {
+        countryChoice2 = d3.select('#dropdownCountry1').property('value')
+        updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2)
+    };
+}
+
+function enable(value) {
+
+    if (value == 2) {
+    d3.select('#dropdownCountry1').attr('disabled', null)
+    };
+
+}
+
+function dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
     var dataList = []
 
@@ -40,12 +79,12 @@ function dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yea
 
     var disorders = d3.keys(dataList[0]).filter(function(d) {
       return d != "country"});
-    console.log(disorders)
 
-    var select = d3.select('#disorderMenu')
+    var select = d3.select('#map')
         .append('select')
         .attr('class', 'select')
-        .attr('id', 'dropdownVis')
+        .attr('id', 'dropdownDisorder')
+        .style('float', 'right')
         .on('change', onchange)
 
     var options = select
@@ -57,8 +96,7 @@ function dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yea
         });
 
     function onchange() {
-        selectValue = d3.select('select').property('value')
-        countryChoice = selectValue;
-        updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
+        disorderChoice = d3.select('#dropdownDisorder').property('value')
+        updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2)
     };
 }

@@ -1,7 +1,10 @@
-function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
+function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
+    console.log(countryChoice)
+    console.log(countryChoice2)
     var year = 1;
     var country = countryChoice;
+    var country2 = countryChoice2;
     var disorder = disorderChoice;
 
     data = DALYdata[year]['data'];
@@ -75,8 +78,11 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     console.log('#' + country + 'parallel')
     d3.selectAll('#'+ country + 'parallel')
         .style ("visibility", "visible")
-        // .style ("stroke-width", 2)
-        // .style ("stroke", '#ce0000')
+
+    if (country2 != undefined) {
+        d3.selectAll('#'+ country2 + 'parallel')
+            .style ("visibility", "visible")
+    }
 
     // Add a group element for each dimension.
     var g = parallel.selectAll(".dimension")
@@ -84,30 +90,6 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .enter().append("g")
             .attr("class", "dimension")
             .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
-            .call(d3.behavior.drag()
-            .origin(function(d) { return {x: x(d)}; })
-            .on("dragstart", function(d) {
-                dragging[d] = x(d);
-                background.attr("visibility", "hidden");
-            })
-        .on("drag", function(d) {
-            dragging[d] = Math.min(width, Math.max(0, d3.event.x));
-            foreground.attr("d", path);
-            dimensions.sort(function(a, b) { return position(a) - position(b); });
-            x.domain(dimensions);
-            g.attr("transform", function(d) { return "translate(" + position(d) + ")"; })
-        })
-        .on("dragend", function(d) {
-            delete dragging[d];
-            transition(d3.select(this)).attr("transform", "translate(" + x(d) + ")");
-            transition(foreground).attr("d", path);
-            background
-                .attr("d", path)
-                .transition()
-                .delay(500)
-                .duration(0)
-                .attr("visibility", null);
-        }));
 
     // Add an axis and title.
     g.append("g")
@@ -140,10 +122,10 @@ function position(d) {
   var v = dragging[d];
   return v == null ? x(d) : v;
 }
-
-function transition(g) {
-  return g.transition().duration(500);
-}
+//
+// function transition(g) {
+//   return g.transition().duration(500);
+// }
 
 // Returns the path for a given data point.
 function path(d) {

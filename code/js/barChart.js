@@ -1,4 +1,4 @@
-function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
+function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,countryChoice2) {
 
     data = DALYdata;
     var disorder = disorderChoice;
@@ -34,10 +34,28 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var disorderByCountry = []
+
     data.forEach(function(years) {
-        var score = years.data[country][disorder]
-        disorderByCountry.push(score);
+        if (years.data[country] == undefined) {
+            console.log(years.data[country])
+            throw Error ('No data');
+        }
+        else {
+            var score = years.data[country][disorder]
+            disorderByCountry.push(score);
+        }
     });
+
+    // function ydata(d) {
+    //     if (d.data[country] == undefined) {
+    //         console.log(y(d.data[country]))
+    //         return 0
+    //     }
+    //     else {
+    //         console.log(y(d.data[country][disorder]))
+    //         return y(d.data[country][disorder])
+    //     }
+    // };
 
     x.domain([data[0]['year'],data[1]['year'], data[2]['year'], data[3]['year']]);
     y.domain([0, d3.max(disorderByCountry)]);
@@ -104,7 +122,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
             yearChoice = 3;
         }
 
-        updateData (mapData, DALYdata, disorder, country, yearChoice);
+        updateData (mapData, DALYdata, disorder, country, yearChoice, countryChoice2);
     });
     titleChart();
 

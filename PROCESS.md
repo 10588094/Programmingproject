@@ -65,4 +65,12 @@ waneer er een spatie in de landnaam zit (bijv. South Africa). Misschien landcode
 gebruiken of stukje code schrijven om spatie te negeren..?
 - toch elke visualisatie een eigen titel gegeven en de hoofdtitel statisch gemaakt
 in HTML. De hoofdtitel moet namelijk op alle visualisatie slaan en hoeft daarom niet
-dynamisch te zijn. 
+dynamisch te zijn.
+
+### Donderdag 25 januari
+- de value uit het disorder dropdown menu werd geselecteerd ipv de waarde uit het
+country dropdown menu. Opgelost door ze verschillende id's te geven en daarop te
+selecteren.
+- ik wilde nog een checkbox of slider voor de jaren erbij maken, maar omdat het verschil
+in data tussen de jaren nauwelijks zichtbaar is heb ik besloten iets anders te implementeren.
+Er kunnen nu twee landlijnen vergeleken worden aan de hand van twee dropdowns.

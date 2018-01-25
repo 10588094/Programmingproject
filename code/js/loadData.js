@@ -51,68 +51,22 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
     var countryChoice = 'Netherlands';
     var yearChoice = 3;
 
-    dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-    dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
     updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
 }
 
-function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
-
-    d3.selectAll(".dropdownOptions")
-        .on("click", function() {
-            var disorder = this.getAttribute("value")
-
-            if(disorder == "all") {
-                var disorderChoice = 'All'
-            }
-            if(disorder == "depressive") {
-                var disorderChoice = 'Depressive'
-            }
-            if(disorder == "bipolar") {
-                var disorderChoice = 'Bipolar'
-            }
-            if(disorder == "schizophrenia") {
-                var disorderChoice = 'Schizophrenic'
-            }
-            if(disorder == "alcoholUse") {
-                var disorderChoice = 'AlcoholUse'
-            }
-            if(disorder == "drugUse") {
-                var disorderChoice = 'DrugUse'
-            }
-            if(disorder == "anxiety") {
-                var disorderChoice = 'Anxiety'
-            }
-            if(disorder == "eating") {
-                var disorderChoice = 'Eating'
-            }
-            if(disorder == "autism") {
-                var disorderChoice = 'Autism'
-            }
-            if(disorder == "adhd") {
-                var disorderChoice = 'Adhd'
-            }
-
-            d3.selectAll(".chartVis").remove();
-            d3.selectAll(".mapVis").remove();
-            d3.selectAll(".parallelVis").remove();
-            // d3.selectAll(".title").remove();
-
-            drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-            drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-            drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-            // updateTitle(disorderChoice, countryChoice, yearChoice);
-
-
-        });
+function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
     d3.selectAll(".chartVis").remove();
     d3.selectAll(".mapVis").remove();
     d3.selectAll(".parallelVis").remove();
-    // d3.selectAll(".title").remove();
+    d3.selectAll("#dropdownCountry0").remove();
+    d3.selectAll("#dropdownCountry1").remove();
+    d3.selectAll("#dropdownDisorder").remove();
 
-    drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-    drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-    drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-    // updateTitle(disorderChoice, countryChoice, yearChoice);
+    dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
+    dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
+    dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
+    drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
+    drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
+    drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
 }

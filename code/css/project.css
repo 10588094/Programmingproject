@@ -53,8 +53,8 @@ pointer-events: none;
     /* float: right; */
 }
 
-.dropdown-menu {
-    /* float: right; */
+#dropdownDisorders {
+    float: right;
 }
 
 #barChart rect {
