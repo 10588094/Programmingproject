@@ -8,6 +8,11 @@
     text-shadow: black 0.3em 0.3em 0.3em;
 }
 
+.pageTitle {
+    fill: black;
+    font: 28px sans-serif;
+    text-align: center;
+}
 /* Add a gray background color and some padding to the footer */
 footer {
   background-color: #1f1f21;
@@ -64,6 +69,17 @@ pointer-events: none;
   shape-rendering: crispEdges;
 }
 
+.chartVis text {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: middle;
+}
+
+#chartText {
+    fill: white;
+    font: 9px sans-serif;
+}
+
 
 #parallel {
     /* background: lightblue; */
@@ -75,13 +91,15 @@ pointer-events: none;
 
 .background path {
   fill: none;
-  stroke: #ddd;
+  stroke: #e07f00;
+  opacity: 0.3;
   shape-rendering: crispEdges;
 }
 
 .foreground path {
   fill: none;
-  stroke: steelblue;
+  stroke: #e07f00;
+  stroke-width: 2 ;
 }
 
 .brush .extent {

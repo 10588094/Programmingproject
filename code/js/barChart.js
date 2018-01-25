@@ -69,14 +69,14 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
         .attr("height", function(d) { return height - y(d.data[country][disorder]); })
         .attr("width", x.rangeBand())
 
-
     // Change color of bars and show text when hovering over
     .on("mouseover",function(d, i) {
-        d3.select(this).attr("r", 10).style("fill", '#c42d00')
+        d3.select(this).style("fill", '#c42d00')
         chart.append("text")
             .attr("class", "toDelete")
+            .attr("id", "chartText")
             .attr("x", x(d.year) + (x.rangeBand()/2))
-            .attr("y", y(d.data[country][disorder] - 2))
+            .attr("y", y(d.data[country][disorder]/1.2))
             .style("text-anchor", "middle")
             .text(d.data[country][disorder])
         })
@@ -103,10 +103,12 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
         if (year == 2015) {
             yearChoice = 3;
         }
-        
+
         updateData (mapData, DALYdata, disorder, country, yearChoice);
     });
+    titleChart();
 
+function titleChart() {
     if (country == 'Netherlands') {
         countryName = 'The Netherlands';
     }
@@ -120,5 +122,6 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .style("text-decoration", "underline")
-        .text("Over time in " + countryName);
+        .text(disorder + " disorders in " + countryName);
+}
 }

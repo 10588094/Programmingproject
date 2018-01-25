@@ -5,14 +5,14 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
     var country = countryChoice;
     data = DALYdata[year]['data'];
 
-    var margin = {top: 30, right: 20, bottom: 30, left: 30},
+    var margin = {top: 50, right: 10, bottom: 30, left: 10},
         height = 500,
-        width = 800;
+        width = 900;
 
     // scale map
     var projection = d3.geo.mercator()
-        .scale(130)
-        .translate([width / 2, height / 1.4]);
+        .scale(150)
+        .translate([width / 2.5, height / 1.4]);
 
     var path = d3.geo.path().projection(projection)
 
@@ -88,7 +88,35 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
         });
 
     map.call(tip);
+    titleMap();
 
+function titleMap() {
+
+    if (year == 0) {
+        yearName = 2000;
+    }
+    if (year == 1) {
+        yearName = 2005;
+    }
+    if (year == 2) {
+        yearName = 2010;
+    }
+    if (year == 3) {
+        yearName = 2015;
+    }
+
+    if (country == 'Netherlands') {
+        country = 'The Netherlands';
+    }
+
+    map.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 2))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("text-decoration", "underline")
+        .text(disorder + " disorders over the world in " + yearName);
+}
 
     // var slider = d3.select("#slider").insert("p", "first-child").append("input")
     //     .attr("class", "vis")

@@ -33,8 +33,7 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
         for (country in yearData) {
             if (yearData.hasOwnProperty(country)) {
                 var d = yearData[country];
-                d.population = +d.population;
-                d.All = +d.All;
+                d.All = parseFloat(d.All, 10);
                 d.Depressive = +d.Depressive;
                 d.Bipolar = +d.Bipolar;
                 d.Schizophrenic = +d.Schizophrenic;
@@ -52,7 +51,9 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
     var countryChoice = 'Netherlands';
     var yearChoice = 3;
 
-    updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice)
+    dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
 }
 
 function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice) {
@@ -95,25 +96,23 @@ function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoic
             d3.selectAll(".chartVis").remove();
             d3.selectAll(".mapVis").remove();
             d3.selectAll(".parallelVis").remove();
-            d3.selectAll(".title").remove();
-            // d3.selectAll(".dropdownVis").remove();
+            // d3.selectAll(".title").remove();
 
             drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
             drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
             drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-            updateTitle(disorderChoice, countryChoice, yearChoice);
-            dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+            // updateTitle(disorderChoice, countryChoice, yearChoice);
+
 
         });
 
     d3.selectAll(".chartVis").remove();
     d3.selectAll(".mapVis").remove();
     d3.selectAll(".parallelVis").remove();
-    d3.selectAll(".title").remove();
+    // d3.selectAll(".title").remove();
 
     drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
     drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
     drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
-    updateTitle(disorderChoice, countryChoice, yearChoice);
-    dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    // updateTitle(disorderChoice, countryChoice, yearChoice);
 }

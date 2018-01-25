@@ -8,7 +8,7 @@ from pprint import pprint
 
 # Open csv file and make a dict
 with open('../../data/csv/DALY-2015.csv', 'r') as infile:
-    fieldnames = ['country', 'population', 'all', 'depressive', 'bipolar', 'schizophrenia',
+    fieldnames = ['country', 'all', 'depressive', 'bipolar', 'schizophrenia',
     'alcoholUse', 'drugUse', 'anxiety', 'eating',
     'autism', 'adhd']
     reader = csv.DictReader(infile, fieldnames)
@@ -16,7 +16,7 @@ with open('../../data/csv/DALY-2015.csv', 'r') as infile:
 
     reader1 = {}
     for each in reader:
-        reader1[each['country']] = {'population': each['population'], 'All': each['all'],
+        reader1[each['country']] = {'country': each['country'], 'All': each['all'],
         'Depressive': each['depressive'], 'Bipolar': each['bipolar'], 'Schizophrenic': each['schizophrenia'],
         'AlcoholUse': each['alcoholUse'], 'DrugUse': each['drugUse'], 'Anxiety': each['anxiety'],
         'Eating': each['eating'], 'Autism': each['autism'], 'Adhd': each['adhd'] }

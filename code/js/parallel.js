@@ -7,13 +7,15 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     data = DALYdata[year]['data'];
     dataYear = DALYdata[year]['year']
 
+    // console.log(data)
+
     var dataList = []
 
     for (countries in data) {
         dataList.push(data[countries])
     }
 
-    var margin = {top: 30, right: 10, bottom: 10, left: 10},
+    var margin = {top: 60, right: 10, bottom: 10, left: 10},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
@@ -45,7 +47,7 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
 
   // Extract the list of dimensions and create a scale for each.
   x.domain(dimensions = d3.keys(dataList[0]).filter(function(d) {
-    return d != "population" && d != "All" && (y[d] =  d3.scale.log()
+    return d != "country" && d != "All" && (y[d] =  d3.scale.log()
         .base(2)
         .domain(d3.extent(dataList, function(p) { return p[d]; }))
         .range([height, 0]));
@@ -57,7 +59,8 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
       .selectAll("path")
         .data(dataList)
       .enter().append("path")
-        .attr("d", path);
+        .attr("d", path)
+        .attr("id", function(d) { return d.country + 'parallel'; });
 
     // Add blue foreground lines for focus.
     foreground = parallel.append("g")
@@ -65,10 +68,15 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
       .selectAll("path")
         .data(dataList)
       .enter().append("path")
-        .attr("d", path);
+        .attr("d", path)
+        .attr("id", function(d) { return d.country + 'parallel'; })
+        .style ("visibility", "hidden");
 
-        console.log(dataList)
-        // console.log(data[country])
+    console.log('#' + country + 'parallel')
+    d3.selectAll('#'+ country + 'parallel')
+        .style ("visibility", "visible")
+        // .style ("stroke-width", 2)
+        // .style ("stroke", '#ce0000')
 
     // Add a group element for each dimension.
     var g = parallel.selectAll(".dimension")
@@ -119,6 +127,14 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .selectAll("rect")
         .attr("x", -8)
         .attr("width", 16);
+
+    parallel.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0 - (margin.top / 1.4))
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .style("text-decoration", "underline")
+        .text("Comorbidity of disorders in " + countryName);
 
 function position(d) {
   var v = dragging[d];

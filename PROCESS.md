@@ -56,3 +56,13 @@ parallel coordinates).
 te maken als die voor disorders. Er zijn namelijke veel te veel landen in mijn data om
 allemaal in  mijn html te zetten. Gelukkig kwam een klasgenoot met een andere oplossing.
 Misschien pas ik deze later nog toe bij disorders voor de consistentie.
+
+### Woensdag 24 januari
+- er waren veel landen undifined deze zijn wel in mijn data maar hebben een andere
+naam dan de landen in de map. Ik verander de landnamen in mijn data.
+- ik kan nu een land-line selecteren in parallel coordinates, maar het lukt niet
+waneer er een spatie in de landnaam zit (bijv. South Africa). Misschien landcode
+gebruiken of stukje code schrijven om spatie te negeren..?
+- toch elke visualisatie een eigen titel gegeven en de hoofdtitel statisch gemaakt
+in HTML. De hoofdtitel moet namelijk op alle visualisatie slaan en hoeft daarom niet
+dynamisch te zijn. 
