@@ -1,3 +1,8 @@
+/**
+Naam: Daphne Witmer
+Studentnummer: 10588094
+**/
+
 function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
     console.log(countryChoice)
@@ -10,13 +15,24 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     data = DALYdata[year]['data'];
     dataYear = DALYdata[year]['year']
 
-    // console.log(data)
-
     var dataList = []
 
     for (countries in data) {
         dataList.push(data[countries])
     }
+
+    if (data[country] == undefined) {
+        var countryData = 'undefined';
+    }
+
+    if (country == 'Netherlands') {
+        var countryName = 'The Netherlands';
+    }
+
+    else {
+        var countryName = country;
+    }
+
 
     var margin = {top: 60, right: 10, bottom: 10, left: 10},
         width = 960 - margin.left - margin.right,
@@ -63,7 +79,7 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .data(dataList)
       .enter().append("path")
         .attr("d", path)
-        .attr("id", function(d) { return d.country + 'parallel'; });
+        // .attr("id", function(d) { return d.country + 'parallel'; });
 
     // Add blue foreground lines for focus.
     foreground = parallel.append("g")
@@ -75,9 +91,16 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .attr("id", function(d) { return d.country + 'parallel'; })
         .style ("visibility", "hidden");
 
-    console.log('#' + country + 'parallel')
+    var countryid = d3.selectAll('#'+ country + 'parallel')
+    // var str = countryid.
+
+    // console.log(countryid)
+
+    // console.log(d3.selectAll('#' + country + 'parallel'))
     d3.selectAll('#'+ country + 'parallel')
         .style ("visibility", "visible")
+
+    // console.log(country)
 
     if (country2 != undefined) {
         d3.selectAll('#'+ country2 + 'parallel')
@@ -114,18 +137,31 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 1.4))
         .attr("text-anchor", "middle")
-        .style("font-size", "16px")
-        .style("text-decoration", "underline")
-        .text("Comorbidity of disorders in " + countryName);
+        .style("font-size", "24px")
+        .text(titleParallel());
+
+// console.log(countryName)
+    function titleParallel() {
+
+        if (country2 == undefined && countryData != 'undefined') {
+            console.log(countryName)
+            return ("Comorbidity of disorders in " + countryName);
+        }
+
+        else if (countryData == 'undefined') {
+            console.log(2)
+            return ('No data available for ' + countryName);
+        }
+        else {
+            console.log(3)
+            return ("Comorbidity of disorders in " + countryName + ' and ' + country2);
+        }
+    }
 
 function position(d) {
   var v = dragging[d];
   return v == null ? x(d) : v;
 }
-//
-// function transition(g) {
-//   return g.transition().duration(500);
-// }
 
 // Returns the path for a given data point.
 function path(d) {

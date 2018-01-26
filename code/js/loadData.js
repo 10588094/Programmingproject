@@ -2,8 +2,6 @@
 Naam: Daphne Witmer
 Studentnummer: 10588094
 Function to load data
-map: https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json
-data: http://www.who.int/healthinfo/global_burden_disease/estimates/en/index2.html
 **/
 
 window.onload = function() {

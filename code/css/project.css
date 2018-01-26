@@ -1,3 +1,5 @@
+/* Header */
+
 .jumbotron {
     margin-bottom: 0px;
     background-image: url(../../doc/3.jpg);
@@ -44,21 +46,15 @@ pointer-events: none;
  color:white;
 }
 
-#slider {
-    /* background: darkblue; */
+.checkbox {
     float: right;
 }
 
-.dropdown {
-    /* float: right; */
-}
-
-#dropdownDisorders {
-    float: right;
+#dropdownCountries0 {
+    float: right
 }
 
 #barChart rect {
-    /* background: lightblue; */
      fill: #ce5c00;
 }
 
@@ -84,10 +80,6 @@ pointer-events: none;
 #parallel {
     /* background: lightblue; */
 }
-
-/* svg {
-  font: 10px sans-serif;
-} */
 
 .background path {
   fill: none;

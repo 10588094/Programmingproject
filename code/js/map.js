@@ -1,3 +1,9 @@
+/**
+Naam: Daphne Witmer
+Studentnummer: 10588094
+map: https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json
+**/
+
 function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
     var year = yearChoice;
@@ -98,13 +104,13 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
         .attr("class", "legendMap")
         .attr("transform", function(d, i) { return "translate(0," + i * 22 + ")"; });
 
-    // Append collored rects for legend
-    legendMap.append("rect")
-        .attr("x", width - 650)
-        .attr("y", 340)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", function(d, i){ return colors[i]; });
+    // // Append collored rects for legend
+    // legendMap.append("rect")
+    //     .attr("x", width - 650)
+    //     .attr("y", 340)
+    //     .attr("width", 18)
+    //     .attr("height", 18)
+    //     .style("fill", function(d, i){ return colors[i]; });
 
     // // Append text to legend
     // legendMap.append("text")
@@ -113,7 +119,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
     //     .attr("dy", ".35em")
     //     .text(function(d, i){ return legendLabels[i]; });
 
-    // titleMap();
+    titleMap();
 
 function titleMap() {
 
@@ -138,27 +144,8 @@ function titleMap() {
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 2))
         .attr("text-anchor", "middle")
-        .style("font-size", "16px")
-        .style("text-decoration", "underline")
+        .style("font-size", "12px")
         .text(disorder + " disorders over the world in " + yearName);
 }
-
-    // var slider = d3.select("#slider").insert("p", "first-child").append("input")
-    //     .attr("class", "vis")
-    //     .attr("type", "range")
-    //     .attr("min", "2000")
-    //     .attr("max", "2015")
-    //     .attr("value", year)
-    //     .attr("id", "currentYear")
-
-    // slider.insert("g", ".track-overlay")
-    // .attr("class", "ticks")
-    // .attr("transform", "translate(0," + 18 + ")")
-    // .selectAll("text")
-    // .data(x.ticks(10))
-    // .enter().append("text")
-    // .attr("x", x)
-    // .attr("text-anchor", "middle")
-    // .text(function(d) { return d + "°"; });
 
 }

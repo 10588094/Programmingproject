@@ -74,3 +74,10 @@ selecteren.
 - ik wilde nog een checkbox of slider voor de jaren erbij maken, maar omdat het verschil
 in data tussen de jaren nauwelijks zichtbaar is heb ik besloten iets anders te implementeren.
 Er kunnen nu twee landlijnen vergeleken worden aan de hand van twee dropdowns.
+
+### Vrijdag 26 januari
+- het lukt niet om landen met een spatie in het id te selecteren voor de parallel
+coordinates, dus ik heb besloten om toch de landcodes nog toe te voegen aan mijn data.
+Daar ben ik nog aan bezig.
+- ik heb gezord dat undefined landen geen error meer veroorzaken en er in de titel
+staat dat er geen data beschikbaar is, zodat dit duidelijk is voor de user.

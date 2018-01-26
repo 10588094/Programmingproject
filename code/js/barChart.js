@@ -1,10 +1,15 @@
+/**
+Naam: Daphne Witmer
+Studentnummer: 10588094
+**/
+
 function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,countryChoice2) {
 
     data = DALYdata;
     var disorder = disorderChoice;
     var country = countryChoice;
 
-    var margin = {top: 30, right: 30, bottom: 20, left: 60},
+    var margin = {top: 80, right: 30, bottom: 20, left: 60},
         width = 190,
         height = 480;
 
@@ -33,32 +38,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var disorderByCountry = []
-
-    data.forEach(function(years) {
-        if (years.data[country] == undefined) {
-            console.log(years.data[country])
-            throw Error ('No data');
-        }
-        else {
-            var score = years.data[country][disorder]
-            disorderByCountry.push(score);
-        }
-    });
-
-    // function ydata(d) {
-    //     if (d.data[country] == undefined) {
-    //         console.log(y(d.data[country]))
-    //         return 0
-    //     }
-    //     else {
-    //         console.log(y(d.data[country][disorder]))
-    //         return y(d.data[country][disorder])
-    //     }
-    // };
-
     x.domain([data[0]['year'],data[1]['year'], data[2]['year'], data[3]['year']]);
-    y.domain([0, d3.max(disorderByCountry)]);
 
     // Make x axis
     chart.append("g")
@@ -76,6 +56,35 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
             .style("text-anchor", "end")
             .style("text-decoration", "bold")
             .text("DALY")
+
+    var disorderByCountry = []
+
+    data.forEach(function(years) {
+        if (years.data[country] == undefined) {
+            country = 'undefined';
+        }
+
+        else {
+            var score = years.data[country][disorder];
+            disorderByCountry.push(score);
+        }
+    });
+
+    if (country == 'undefined') {
+        chart.append("text")
+            .attr("x", (width / 2))
+            .attr("y", 0 - (margin.top / 2))
+            .attr("text-anchor", "middle")
+            .style("font-size", "12px")
+            .text('No data available');
+    }
+
+    else {
+        drawBars();
+    }
+
+function drawBars() {
+    y.domain([0, d3.max(disorderByCountry)]);
 
     // Make bars
     chart.selectAll(".bar")
@@ -125,21 +134,21 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         updateData (mapData, DALYdata, disorder, country, yearChoice, countryChoice2);
     });
     titleChart();
+}
 
 function titleChart() {
     if (country == 'Netherlands') {
-        countryName = 'The Netherlands';
+        var countryName = 'The Netherlands';
     }
     else {
-        countryName = country;
+        var countryName = country;
     }
 
     chart.append("text")
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 2))
         .attr("text-anchor", "middle")
-        .style("font-size", "16px")
-        .style("text-decoration", "underline")
+        .style("font-size", "12px")
         .text(disorder + " disorders in " + countryName);
 }
 }

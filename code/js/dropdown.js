@@ -1,3 +1,8 @@
+/**
+Naam: Daphne Witmer
+Studentnummer: 10588094
+**/
+
 function dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
     var dataList = []
@@ -14,17 +19,17 @@ function dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yea
         .attr('class', 'select')
         .attr('id', 'dropdownCountry0')
         .on('change', onchange)
+        .style('float', 'right')
 
     var options = country
         .selectAll('option')
         .data(dataList).enter()
         .append('option')
-        .text(function(d) {
-            return d;
-        });
+        .text(function(d) { return d; });
 
     function onchange() {
-        countryChoice = d3.select('#dropdownCountry0').property('value')
+        var countryChoice = d3.select('#dropdownCountry0').property('value')
+        console.log(countryChoice)
         updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2)
     };
 }
@@ -45,7 +50,8 @@ function dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, ye
         .attr('class', 'select')
         .attr('id', 'dropdownCountry1')
         .on('change', onchange)
-        .attr('disabled', 'disabled')
+        .style('visibility', 'hidden')
+        .style('float', 'right')
 
     var options = country
         .selectAll('option')
@@ -61,12 +67,19 @@ function dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, ye
     };
 }
 
-function enable(value) {
+function enable() {
 
-    if (value == 2) {
-    d3.select('#dropdownCountry1').attr('disabled', null)
-    };
+    d3.select('#dropdownCountry1').style('visibility', 'visible').attr('checked');
 
+    // if (checkbox.checked == true) {
+    //     d3.select('#dropdownCountry1').style('visibility', 'visible');
+    //     d3.select('.checkbox').attr('checked').remove();
+    // }
+    //
+    // else {
+    //     d3.select('#dropdownCountry1').style('visibility', 'hidden');
+    //     // checkbox.checked = true;
+    // }
 }
 
 function dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
