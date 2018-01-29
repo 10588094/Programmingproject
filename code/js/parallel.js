@@ -5,8 +5,6 @@ Studentnummer: 10588094
 
 function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
-    console.log(countryChoice)
-    console.log(countryChoice2)
     var year = 1;
     var country = countryChoice;
     var country2 = countryChoice2;
@@ -34,7 +32,7 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     }
 
 
-    var margin = {top: 60, right: 10, bottom: 10, left: 10},
+    var margin = {top: 60, right: 100, bottom: 10, left: 10},
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
@@ -66,7 +64,7 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
 
   // Extract the list of dimensions and create a scale for each.
   x.domain(dimensions = d3.keys(dataList[0]).filter(function(d) {
-    return d != "country" && d != "All" && (y[d] =  d3.scale.log()
+    return d != "country" && d!= "countryCode" && d != "All" && (y[d] =  d3.scale.log()
         .base(2)
         .domain(d3.extent(dataList, function(p) { return p[d]; }))
         .range([height, 0]));
@@ -79,7 +77,8 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .data(dataList)
       .enter().append("path")
         .attr("d", path)
-        // .attr("id", function(d) { return d.country + 'parallel'; });
+        .on('mouseover', mouseOver)
+        .on('mouseout', mouseOut)
 
     // Add blue foreground lines for focus.
     foreground = parallel.append("g")
@@ -88,22 +87,36 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .data(dataList)
       .enter().append("path")
         .attr("d", path)
-        .attr("id", function(d) { return d.country + 'parallel'; })
-        .style ("visibility", "hidden");
+        .attr("id", function(d) { return d.countryCode; })
+        .style ("visibility", "hidden")
 
-    var countryid = d3.selectAll('#'+ country + 'parallel')
-    // var str = countryid.
+        // d3.selectAll('.background')
+        //     .data(dataList)
 
-    // console.log(countryid)
+        function mouseOver(d) {
+             d3.select(this)
+                .style('opacity', 1)
+                .style('stroke-width', 2)
+             parallel.append("text")
+                 .attr("class", "hoverText")
+                 .attr("x", x('Adhd'))
+                 .attr("y", y['Adhd'](d.Adhd))
+                 .text(d.country)
+        }
 
-    // console.log(d3.selectAll('#' + country + 'parallel'))
-    d3.selectAll('#'+ country + 'parallel')
-        .style ("visibility", "visible")
+        function mouseOut(d, i) {
+            d3.select(this)
+             .style('opacity', 0.3)
+            d3.selectAll('.hoverText').remove();
+        }
 
-    // console.log(country)
+    if (countryData != 'undefined') {
+        d3.selectAll('#'+ data[country].countryCode)
+            .style ("visibility", "visible")
+    }
 
     if (country2 != undefined) {
-        d3.selectAll('#'+ country2 + 'parallel')
+        d3.selectAll('#'+ data[country2].countryCode)
             .style ("visibility", "visible")
     }
 
@@ -112,7 +125,7 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .data(dimensions)
         .enter().append("g")
             .attr("class", "dimension")
-            .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
+            .attr("transform", function(d) {return "translate(" + x(d) + ")"; })
 
     // Add an axis and title.
     g.append("g")
@@ -140,20 +153,20 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .style("font-size", "24px")
         .text(titleParallel());
 
-// console.log(countryName)
     function titleParallel() {
 
         if (country2 == undefined && countryData != 'undefined') {
-            console.log(countryName)
             return ("Comorbidity of disorders in " + countryName);
         }
 
+        else if ( country2 != undefined && countryData == 'undefined') {
+            return ('Comorbidity of disorders in ' + country2 + ', no data for ' + countryName);
+        }
+
         else if (countryData == 'undefined') {
-            console.log(2)
             return ('No data available for ' + countryName);
         }
         else {
-            console.log(3)
             return ("Comorbidity of disorders in " + countryName + ' and ' + country2);
         }
     }

@@ -71,15 +71,21 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
     });
 
     if (country == 'undefined') {
-        chart.append("text")
-            .attr("x", (width / 2))
-            .attr("y", 0 - (margin.top / 2))
-            .attr("text-anchor", "middle")
-            .style("font-size", "12px")
-            .text('No data available');
+        var titleText = 'No data available';
+        titleChart();
+
     }
 
     else {
+        if (country == 'Netherlands') {
+            var countryName = 'The Netherlands';
+        }
+        else {
+            var countryName = country;
+        }
+
+        var titleText = disorder + " disorders in " + countryName;
+        titleChart();
         drawBars();
     }
 
@@ -133,22 +139,15 @@ function drawBars() {
 
         updateData (mapData, DALYdata, disorder, country, yearChoice, countryChoice2);
     });
-    titleChart();
 }
 
 function titleChart() {
-    if (country == 'Netherlands') {
-        var countryName = 'The Netherlands';
-    }
-    else {
-        var countryName = country;
-    }
 
     chart.append("text")
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 2))
         .attr("text-anchor", "middle")
         .style("font-size", "12px")
-        .text(disorder + " disorders in " + countryName);
+        .text(titleText);
 }
 }

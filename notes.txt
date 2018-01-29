@@ -1,1 +1,14 @@
-All, Depressive disorders, Bipolar disorder, Schizophrenia, Alcohol use disorders, Drug use disorders, Anxiety disorders, Eating disorders, Autism and Asperger syndrome, Attention deficit/hyperactivity syndrome
+- 2e lijn weg wanneer checkbox unchecked
+- landnaam naast lijn
+- namen in dropdown box
+
+- legenda
+- info
+- assen parallel
+- transitie
+
+- kleuren
+- page layout
+
+- comments
+- stylesheet

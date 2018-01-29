@@ -50,6 +50,8 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
     var yearChoice = 3;
 
     updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    // dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
+
 }
 
 function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {

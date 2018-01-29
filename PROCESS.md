@@ -81,3 +81,9 @@ coordinates, dus ik heb besloten om toch de landcodes nog toe te voegen aan mijn
 Daar ben ik nog aan bezig.
 - ik heb gezord dat undefined landen geen error meer veroorzaken en er in de titel
 staat dat er geen data beschikbaar is, zodat dit duidelijk is voor de user.
+
+### Maandag 29 januari
+- ik heb besloten om een mouseover functie te doen op de parallel coordinates
+en daarbij ook de namen van de landen te laten zien. Zo kan de gebruiker snel zien
+welke lijn welk land is, zonder in de dropdown te hoeven kiezen. Het kan wel lastig
+zijn om een bepaald land te vinden zo, dus de dropdown is nog steeds erg handig.  

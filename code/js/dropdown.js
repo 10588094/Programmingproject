@@ -29,7 +29,6 @@ function dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yea
 
     function onchange() {
         var countryChoice = d3.select('#dropdownCountry0').property('value')
-        console.log(countryChoice)
         updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2)
     };
 }
@@ -50,7 +49,6 @@ function dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, ye
         .attr('class', 'select')
         .attr('id', 'dropdownCountry1')
         .on('change', onchange)
-        .style('visibility', 'hidden')
         .style('float', 'right')
 
     var options = country
@@ -61,6 +59,8 @@ function dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, ye
             return d;
         });
 
+    enable();
+
     function onchange() {
         countryChoice2 = d3.select('#dropdownCountry1').property('value')
         updateData(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2)
@@ -69,17 +69,15 @@ function dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, ye
 
 function enable() {
 
-    d3.select('#dropdownCountry1').style('visibility', 'visible').attr('checked');
+    if (check.checked == true) {
+        d3.select('#dropdownCountry1').style('visibility', 'visible');
+        $('#check').prop('checked', 'false')
+    }
 
-    // if (checkbox.checked == true) {
-    //     d3.select('#dropdownCountry1').style('visibility', 'visible');
-    //     d3.select('.checkbox').attr('checked').remove();
-    // }
-    //
-    // else {
-    //     d3.select('#dropdownCountry1').style('visibility', 'hidden');
-    //     // checkbox.checked = true;
-    // }
+    else {
+        d3.select('#dropdownCountry1').style('visibility', 'hidden');
+        $('#check').prop('checked')
+    }
 }
 
 function dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
@@ -91,7 +89,7 @@ function dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yea
     }
 
     var disorders = d3.keys(dataList[0]).filter(function(d) {
-      return d != "country"});
+      return d != "country" && d!= 'countryCode'});
 
     var select = d3.select('#map')
         .append('select')
