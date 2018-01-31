@@ -11,23 +11,25 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
     var country = countryChoice;
     data = DALYdata[year]['data'];
 
-    var margin = {top: 50, right: 10, bottom: 30, left: 10},
+    // console.log(disorder)
+
+    var margin = {top: 80, right: 10, bottom: 30, left: 10},
         height = 500,
         width = 900;
 
     // scale map
     var projection = d3.geo.mercator()
-        .scale(150)
-        .translate([width / 2.5, height / 1.4]);
+        .scale(140)
+        .translate([width / 1.5, height / 1.5]);
 
     var path = d3.geo.path().projection(projection)
 
     var colors = ['#efeb00', '#ce0000']
 
-    // set colors for the map legend
+    // set colors for the map
     var colorMap = d3.scale.log()
-        .base(100000)
-        .domain([0.5, 25710.9])
+        .base(2)
+        .domain([0.3, 25710.9])
         .range(colors);
 
     // Set tooltips
@@ -97,27 +99,55 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
 
     map.call(tip);
 
-    // Apply legend for HPI index
-    var legendMap = map.selectAll(".legendMap")
-        .data(colors)
-        .enter().append("g")
-        .attr("class", "legendMap")
-        .attr("transform", function(d, i) { return "translate(0," + i * 22 + ")"; });
 
-    // // Append collored rects for legend
-    // legendMap.append("rect")
-    //     .attr("x", width - 650)
-    //     .attr("y", 340)
-    //     .attr("width", 18)
-    //     .attr("height", 18)
-    //     .style("fill", function(d, i){ return colors[i]; });
+    //Append a defs (for definition) element to your SVG
+    var defs = map.append("defs");
 
-    // // Append text to legend
-    // legendMap.append("text")
-    //     .attr("x", width - 620)
-    //     .attr("y", 350)
-    //     .attr("dy", ".35em")
-    //     .text(function(d, i){ return legendLabels[i]; });
+    //Append a linearGradient element to the defs and give it a unique id
+    var linearGradient = defs.append("linearGradient")
+        .attr("id", "linear-gradient")
+        .attr("x1", "0%")
+        .attr("y1", "0%")
+        .attr("x2", "100%")
+        .attr("y2", "0%");
+
+        //Set the color for the start (0%)
+    linearGradient.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", '#efeb00');
+
+    //Set the color for the end (100%)
+    linearGradient.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", '#ce0000');
+
+        //Draw the rectangle and fill with gradient
+    map.append("rect")
+	.attr("width", 450)
+	.attr("height", 12)
+    .attr('x', 500)
+    .attr('y', 460)
+    .style('opacity', 0.8)
+	.style("fill", "url(#linear-gradient)")
+
+    map.append("text")
+        .attr("x", 690)
+        .attr("y", 450)
+        .style("font-size", "14px")
+        .text('DALY score');
+
+    map.append("text")
+        .attr("x", 500)
+        .attr("y", 490)
+        .style("font-size", "14px")
+        .text('0.3');
+
+    map.append("text")
+        .attr("x", 910)
+        .attr("y", 490)
+        .style("font-size", "14px")
+        .text('25710');
+
 
     titleMap();
 
@@ -141,8 +171,8 @@ function titleMap() {
     }
 
     map.append("text")
-        .attr("x", (width / 2))
-        .attr("y", 0 - (margin.top / 2))
+        .attr("x", (width / 1.3))
+        .attr("y", 0 - (margin.top / 2.4))
         .attr("text-anchor", "middle")
         .style("font-size", "12px")
         .text(disorder + " disorders over the world in " + yearName);

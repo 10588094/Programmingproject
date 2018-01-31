@@ -1,74 +1,63 @@
-/* Header */
-
-.jumbotron {
-    margin-bottom: 0px;
-    background-image: url(../../doc/3.jpg);
-    background-position: 0% 25%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: white;
-    text-shadow: black 0.3em 0.3em 0.3em;
-}
-
-.pageTitle {
-    fill: black;
-    font: 28px sans-serif;
-    text-align: center;
-}
 /* Add a gray background color and some padding to the footer */
+
 footer {
-  background-color: #1f1f21;
-  padding: 25px;
+    background-color: #191818;
+    padding: 25px;
+    opacity: 0.3;
 }
 
-#title {
-    /* background: #a5a4a0; */
-    float: right;
-}
-
-#map {
-    /* background: lightblue; */
+footer p {
+    color: #848484;
 }
 
 /* Tooltip CSS */
+
 .d3-tip {
-line-height: 1.5;
-font-weight: 400;
-font-family:"avenir next", Arial, sans-serif;
-padding: 6px;
-background: rgba(0, 0, 0, 0.6);
-color: #FFA500;
-border-radius: 1px;
-pointer-events: none;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: "avenir next", Arial, sans-serif;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFA500;
+    border-radius: 1px;
+    pointer-events: none;
+}
+
+/* Creates a small triangle extender for the tooltip */
+
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 8px;
+    width: 100%;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.6);
+    position: relative;
+    pointer-events: none;
 }
 
 .details {
- color:white;
+    color: white;
 }
 
 .checkbox {
-    float: right;
-}
-
-#dropdownCountries0 {
-    float: right
+    float: left;
 }
 
 #barChart rect {
-     fill: #ce5c00;
+    /* fill: #ce5c00; */
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .chartVis text {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: middle;
+    fill: black;
+    font: 14px sans-serif;
+    text-anchor: middle;
 }
 
 #chartText {
@@ -76,38 +65,33 @@ pointer-events: none;
     font: 9px sans-serif;
 }
 
-
-#parallel {
-    /* background: lightblue; */
-}
-
+/* parallel */
 .background path {
-  fill: none;
-  stroke: #e07f00;
-  opacity: 0.3;
-  shape-rendering: crispEdges;
+    fill: none;
+    stroke: #e07f00;
+    opacity: 0.3;
+    shape-rendering: crispEdges;
 }
 
 .foreground path {
-  fill: none;
-  stroke: #e07f00;
-  stroke-width: 2 ;
+    fill: none;
+    stroke: #e07f00;
+    stroke-width: 2;
 }
 
 .brush .extent {
-  fill-opacity: .3;
-  stroke: #fff;
-  shape-rendering: crispEdges;
+    fill-opacity: .3;
+    stroke: #fff;
+    shape-rendering: crispEdges;
 }
 
-.axis line,
-.axis path {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+.axis line, .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .axis text {
-  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
-  cursor: move;
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    cursor: move;
 }

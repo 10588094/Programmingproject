@@ -1,14 +1,16 @@
 - 2e lijn weg wanneer checkbox unchecked
-- landnaam naast lijn
 - namen in dropdown box
+- tooltip map uitbeeld
+- y as barchart
 
-- legenda
 - info
 - assen parallel
-- transitie
 
-- kleuren
 - page layout
 
 - comments
 - stylesheet
+
+-jaar in title parallel
+
+screen shot fireshot

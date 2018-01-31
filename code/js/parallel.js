@@ -34,7 +34,7 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
 
     var margin = {top: 60, right: 100, bottom: 10, left: 10},
         width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 550 - margin.top - margin.bottom;
 
     var x = d3.scale.ordinal().rangePoints([0, width], 1),
         y = {},
@@ -90,17 +90,15 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .attr("id", function(d) { return d.countryCode; })
         .style ("visibility", "hidden")
 
-        // d3.selectAll('.background')
-        //     .data(dataList)
-
         function mouseOver(d) {
              d3.select(this)
                 .style('opacity', 1)
                 .style('stroke-width', 2)
              parallel.append("text")
                  .attr("class", "hoverText")
-                 .attr("x", x('Adhd'))
+                 .attr("x", x('Adhd') + 10)
                  .attr("y", y['Adhd'](d.Adhd))
+                 .style("font-size", "12px")
                  .text(d.country)
         }
 
@@ -113,11 +111,21 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     if (countryData != 'undefined') {
         d3.selectAll('#'+ data[country].countryCode)
             .style ("visibility", "visible")
+            parallel.append("text")
+                .attr("x", x('Adhd') + 10)
+                .attr("y", y['Adhd'](data[country].Adhd) )
+                .style("font-size", "12px")
+                .text(country)
     }
 
     if (country2 != undefined) {
         d3.selectAll('#'+ data[country2].countryCode)
             .style ("visibility", "visible")
+            parallel.append("text")
+                .attr("x", x('Adhd') + 10)
+                .attr("y", y['Adhd'](data[country2].Adhd) )
+                .style("font-size", "12px")
+                .text(country2)
     }
 
     // Add a group element for each dimension.
