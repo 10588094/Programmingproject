@@ -11,7 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//d3js.org/d3.geo.projection.v0.min.js"></script>
@@ -29,42 +28,27 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Project</a>
+                <a class="navbar-brand" href="project.html">Project</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="disorderPrevalence.html">Home</a></li>
-                <li><a href="info.html">Info</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Disorders
-        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" class="dropdownOptions" value="all">All</a></li>
-                        <li><a href="#" class="dropdownOptions" value="depressive">Depression</a></li>
-                        <li><a href="#" class="dropdownOptions" value="bipolar">Bipolar</a></li>
-                        <li><a href="#" class="dropdownOptions" value="schizophrenia">Schizophrenia</a></li>
-                        <li><a href="#" class="dropdownOptions" value="alcoholUse">Alcohol use disorder</a></li>
-                        <li><a href="#" class="dropdownOptions" value="drugUse">Drug use disorder</a></li>
-                        <li><a href="#" class="dropdownOptions" value="anxiety">Anxiety</a></li>
-                        <li><a href="#" class="dropdownOptions" value="eating">Eating disorder</a></li>
-                        <li><a href="#" class="dropdownOptions" value="autism">Autism</a></li>
-                        <li><a href="#" class="dropdownOptions" value="adhd">Adhd</a></li>
-                    </ul>
-                </li>
-            </ul>
+                <li class="active"><a href="disorderPrevalence.html">Visualization</a></li>
+                <li><a href="info.html">About</a></li>
         </div>
     </nav>
 
     <div class="container-fluid">
+        
         <div class="row">
             <div class="pageTitle">
-                <p>title</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-2" id="barChart"></div>
-            <div class="col-md-10" id="map"></div>
-            <div class="col-md-8" id="slider"></div>
+            <div class="col-md-3" id="barChart"></div>
+            <div class="col-md-1" id="disorderDropdown"></div>
+            <div class="col-md-9" id="map"></div>
         </div>
 
         <div class="row">

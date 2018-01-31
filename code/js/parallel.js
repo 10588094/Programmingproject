@@ -1,19 +1,18 @@
 /**
 Naam: Daphne Witmer
 Studentnummer: 10588094
+This file contains functions to draw a parallel coordinates visualization
 **/
 
 function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
-    var year = 1;
+    var year = yearChoice;
     var country = countryChoice;
     var country2 = countryChoice2;
     var disorder = disorderChoice;
-
-    data = DALYdata[year]['data'];
-    dataYear = DALYdata[year]['year']
-
-    var dataList = []
+    var data = DALYdata[year]['data'];
+    var dataYear = DALYdata[year]['year'];
+    var dataList = [];
 
     for (countries in data) {
         dataList.push(data[countries])
@@ -30,7 +29,6 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     else {
         var countryName = country;
     }
-
 
     var margin = {top: 60, right: 100, bottom: 10, left: 10},
         width = 960 - margin.left - margin.right,
@@ -158,49 +156,63 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 1.4))
         .attr("text-anchor", "middle")
-        .style("font-size", "24px")
+        .style("font-size", "20px")
         .text(titleParallel());
 
     function titleParallel() {
 
+        if (year == 0) {
+            yearName = 2000;
+        }
+        if (year == 1) {
+            yearName = 2005;
+        }
+        if (year == 2) {
+            yearName = 2010;
+        }
+        if (year == 3) {
+            yearName = 2015;
+        }
+
+
         if (country2 == undefined && countryData != 'undefined') {
-            return ("Comorbidity of disorders in " + countryName);
+            return ("Comorbidity of disorders in " + countryName + ", " + yearName);
         }
 
         else if ( country2 != undefined && countryData == 'undefined') {
-            return ('Comorbidity of disorders in ' + country2 + ', no data for ' + countryName);
+            return ('Comorbidity of disorders in ' + country2 + ', no data for ' + countryName + ", " + yearName);
         }
 
         else if (countryData == 'undefined') {
-            return ('No data available for ' + countryName);
+            return ('No data available for ' + countryName + ", " + yearName);
         }
         else {
-            return ("Comorbidity of disorders in " + countryName + ' and ' + country2);
+            return ("Comorbidity of disorders in " + countryName + ' and ' + country2 + ", " + yearName);
         }
     }
 
-function position(d) {
-  var v = dragging[d];
-  return v == null ? x(d) : v;
-}
+    function position(d) {
+        var v = dragging[d];
+        return v == null ? x(d) : v;
+    }
 
-// Returns the path for a given data point.
-function path(d) {
-  return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
-}
+    // Returns the path for a given data point.
+    function path(d) {
+        return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
+    }
 
-function brushstart() {
-  d3.event.sourceEvent.stopPropagation();
-}
+    function brushstart() {
+        d3.event.sourceEvent.stopPropagation();
+    }
 
-// Handles a brush event, toggling the display of foreground lines.
-function brush() {
-  var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
-      extents = actives.map(function(p) { return y[p].brush.extent(); });
-  foreground.style("display", function(d) {
-    return actives.every(function(p, i) {
-      return extents[i][0] <= d[p] && d[p] <= extents[i][1];
-    }) ? null : "none";
-  });
-}
+    // Handles a brush event, toggling the display of foreground lines.
+    function brush() {
+        var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
+            extents = actives.map(function(p) { return y[p].brush.extent(); });
+        foreground.style("display", function(d) {
+            return actives.every(function(p, i) {
+                return extents[i][0] <= d[p] && d[p] <= extents[i][1];
+            }) ? null : "none";
+        });
+    }
 }

@@ -89,4 +89,16 @@ welke lijn welk land is, zonder in de dropdown te hoeven kiezen. Het kan wel las
 zijn om een bepaald land te vinden zo, dus de dropdown is nog steeds erg handig.
 
 ### Dinsdag 30 januari
--   
+-  de kleur van de barchart was wat verwarrend, dus ik heb die nu op dezelfde manier
+geschaald als de kaart. Hogere score geeft dus rood en lagere score geel.
+- omdat de kaart gradieel geschaald is, heb ik gekozen voor een gradient legenda ipv
+een legenda met blokjes.
+
+### Woensdag 31 januari
+- de dropdown menu's voor landen gaan steeds terug naar Afghanistan, omdat ze opnieuw
+geladen worden. Daarom heb ik er een 'Choose country' optie aan toegevoegd, zodat het
+niet verwarrend is.
+- Omdat de DALY score best wat uitleg nodig heeft heb ik hier een aparte pagina voor.
+- ik had graag nog een update functie gemaakt, ipv de hele svg's weg te gooien en opnieuw
+te maken. Gezien de tijd ga ik dit niet meer doen helaas. Dit zou wel het eerste zijn
+waar ik in een voglend project tijd aan zou besteden. 

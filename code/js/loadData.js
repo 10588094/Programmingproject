@@ -1,7 +1,7 @@
 /**
 Naam: Daphne Witmer
 Studentnummer: 10588094
-Function to load data
+Function to load and update data
 **/
 
 window.onload = function() {
@@ -19,6 +19,7 @@ window.onload = function() {
 function loadData(error, mapData, data2000, data2005, data2010, data2015) {
     if (error) throw error;
 
+    // Make an object with al data, sorted on year and data
     var DALYdata = [
         {year: 2000, data: data2000},
         {year: 2005, data: data2005},
@@ -26,6 +27,7 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
         {year: 2015, data: data2015}
     ];
 
+    // Convert data to numbers when needed
     DALYdata.forEach(function(year) {
         var yearData = year['data']
         for (country in yearData) {
@@ -45,77 +47,30 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
         }
     });
 
+    // Set begin values for page
     var disorderChoice = 'All';
     var countryChoice = 'Netherlands';
     var countryChoice2;
     var yearChoice = 3;
 
-        updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
+    updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice);
 }
 
 function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2) {
 
+    // Remove all visualizations
     d3.selectAll(".chartVis").remove();
     d3.selectAll(".mapVis").remove();
     d3.selectAll(".parallelVis").remove();
+    d3.selectAll('#dropdownDisorder').remove();
     d3.selectAll("#dropdownCountry0").remove();
     d3.selectAll("#dropdownCountry1").remove();
 
+    // Draw all visualizations
     drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
     drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
     drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
+    dropdownDisorders(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2)
     dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
     dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
-
-
-    d3.selectAll(".dropdownOptions")
-        .on("click", function() {
-            var disorder = this.getAttribute("value")
-            // console.log(disorder)
-
-            if(disorder == "all") {
-                var disorderChoice = 'All'
-            }
-            if(disorder == "depressive") {
-                var disorderChoice = 'Depressive'
-            }
-            if(disorder == "bipolar") {
-                var disorderChoice = 'Bipolar'
-            }
-            if(disorder == "schizophrenia") {
-                var disorderChoice = 'Schizophrenic'
-            }
-            if(disorder == "alcoholUse") {
-                var disorderChoice = 'AlcoholUse'
-            }
-            if(disorder == "drugUse") {
-                var disorderChoice = 'DrugUse'
-            }
-            if(disorder == "anxiety") {
-                var disorderChoice = 'Anxiety'
-            }
-            if(disorder == "eating") {
-                var disorderChoice = 'Eating'
-            }
-            if(disorder == "autism") {
-                var disorderChoice = 'Autism'
-            }
-            if(disorder == "adhd") {
-                var disorderChoice = 'Adhd'
-            }
-
-            d3.selectAll(".chartVis").remove();
-            d3.selectAll(".mapVis").remove();
-            d3.selectAll(".parallelVis").remove();
-            d3.selectAll("#dropdownCountry0").remove();
-            d3.selectAll("#dropdownCountry1").remove();
-            d3.selectAll("#dropdownDisorder").remove();
-
-            dropdownCountries(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
-            dropdownCountries1(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
-
-            drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
-            drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
-            drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, countryChoice2);
-        });
 }

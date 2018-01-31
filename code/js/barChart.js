@@ -19,7 +19,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         var countryName = country;
     }
 
-    var margin = { top: 80, right: 30, bottom: 20, left: 60 },
+    var margin = { top: 70, right: 30, bottom: 40, left: 60 },
         width = 190,
         height = 480;
 
@@ -158,7 +158,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
 
     function titleChart() {
 
-        // Define text for title 
+        // Define text for title
         if (country == 'undefined') {
             var titleText = 'No data available';
         }
@@ -167,6 +167,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
             var titleText = disorder + " disorders in " + countryName;
         }
 
+        // Make title
         chart.append("text")
             .attr("x", (width / 2))
             .attr("y", 0 - (margin.top / 2.4))

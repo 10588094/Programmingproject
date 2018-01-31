@@ -1,4 +1,4 @@
-[Link to project](https://10588094.github.io/project/disorderPrevalence.html)  
+[Link to project](https://10588094.github.io/project/project.html)  
 
 # Project Proposal
 

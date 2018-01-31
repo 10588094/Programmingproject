@@ -1,16 +1,10 @@
 - 2e lijn weg wanneer checkbox unchecked
-- namen in dropdown box
 - tooltip map uitbeeld
-- y as barchart
-
-- info
 - assen parallel
-
-- page layout
 
 - comments
 - stylesheet
 
--jaar in title parallel
+- dropdown right aligned
 
 screen shot fireshot

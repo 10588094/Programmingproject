@@ -1,6 +1,6 @@
 # Name: Daphne Witmer
 # Student number: 10588094
-# convert csv data to JSON
+# convert csv data to JSON 
 
 import json
 import csv
@@ -14,6 +14,7 @@ with open('../../data/csv/DALY-2000.csv', 'r') as infile:
     reader = csv.DictReader(infile, fieldnames)
     reader = list(reader)
 
+    # Make an object sorted on countries
     reader1 = {}
     for each in reader:
         reader1[each['country']] = {'country': each['country'], 'countryCode': each['countryCode'], 'All': each['all'],
