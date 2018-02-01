@@ -10,8 +10,8 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     var country = countryChoice;
     var country2 = countryChoice2;
     var disorder = disorderChoice;
-    var data = DALYdata[year]['data'];
-    var dataYear = DALYdata[year]['year'];
+    var data = DALYdata[year]["data"];
+    var dataYear = DALYdata[year]["year"];
     var dataList = [];
 
     for (countries in data) {
@@ -19,11 +19,11 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     }
 
     if (data[country] == undefined) {
-        var countryData = 'undefined';
+        var countryData = "undefined";
     }
 
-    if (country == 'Netherlands') {
-        var countryName = 'The Netherlands';
+    if (country == "Netherlands") {
+        var countryName = "The Netherlands";
     }
 
     else {
@@ -75,8 +75,8 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .data(dataList)
       .enter().append("path")
         .attr("d", path)
-        .on('mouseover', mouseOver)
-        .on('mouseout', mouseOut)
+        .on("mouseover", mouseOver)
+        .on("mouseout", mouseOut)
 
     // Add blue foreground lines for focus.
     foreground = parallel.append("g")
@@ -91,14 +91,14 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     function mouseOver(d) {
         // Change line when hovering over
         d3.select(this)
-            .style('opacity', 1)
-            .style('stroke-width', 2)
+            .style("opacity", 1)
+            .style("stroke-width", 2)
 
         // Show country name when hovering over
         parallel.append("text")
              .attr("class", "hoverText")
-             .attr("x", x('Adhd') + 10)
-             .attr("y", y['Adhd'](d.Adhd))
+             .attr("x", x("Adhd") + 10)
+             .attr("y", y["Adhd"](d.Adhd))
              .style("font-size", "12px")
              .text(d.country)
     }
@@ -106,35 +106,35 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     function mouseOut(d, i) {
         // Change line back after hovering
         d3.select(this)
-            .style('opacity', 0.3)
+            .style("opacity", 0.3)
 
         // Remove text after hovering
-        d3.selectAll('.hoverText').remove();
+        d3.selectAll(".hoverText").remove();
     }
 
-    if (countryData != 'undefined') {
+    if (countryData != "undefined") {
         // Show selected line
-        d3.selectAll('#'+ data[country].countryCode)
+        d3.selectAll("#"+ data[country].countryCode)
             .style ("visibility", "visible")
 
         // Show country name for line
         parallel.append("text")
-            .attr("x", x('Adhd') + 10)
-            .attr("y", y['Adhd'](data[country].Adhd) )
+            .attr("x", x("Adhd") + 10)
+            .attr("y", y["Adhd"](data[country].Adhd) )
             .style("font-size", "12px")
             .text(country)
     }
 
     if (country2 != undefined) {
         // Show second selected line give it another color to seperate the two lines
-        d3.selectAll('#'+ data[country2].countryCode)
+        d3.selectAll("#"+ data[country2].countryCode)
             .style ("visibility", "visible")
-            .style('stroke', '#d15904')
+            .style("stroke", "#d15904")
 
         // SHow country name for line
         parallel.append("text")
-            .attr("x", x('Adhd') + 10)
-            .attr("y", y['Adhd'](data[country2].Adhd) )
+            .attr("x", x("Adhd") + 10)
+            .attr("y", y["Adhd"](data[country2].Adhd) )
             .style("font-size", "12px")
             .text(country2)
     }
@@ -179,30 +179,31 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         }
 
 
-        if (country2 == undefined && countryData != 'undefined') {
+        if (country2 == undefined && countryData != "undefined") {
             return ("Comorbidity of disorders in " + countryName + ", " + yearName);
         }
 
-        else if ( country2 != undefined && countryData == 'undefined') {
-            return ('Comorbidity of disorders in ' + country2 + ', no data for ' + countryName + ", " + yearName);
+        else if ( country2 != undefined && countryData == "undefined") {
+            return ("Comorbidity of disorders in " + country2 + ", no data for " + countryName + ", " + yearName);
         }
 
-        else if (countryData == 'undefined') {
-            return ('No data available for ' + countryName + ", " + yearName);
+        else if (countryData == "undefined") {
+            return ("No data available for " + countryName + ", " + yearName);
         }
         else {
-            return ("Comorbidity of disorders in " + countryName + ' and ' + country2 + ", " + yearName);
+            return ("Comorbidity of disorders in " + countryName + " and " + country2 + ", " + yearName);
         }
-    }
-
-    function position(d) {
-        var v = dragging[d];
-        return v == null ? x(d) : v;
     }
 
     // Returns the path for a given data point.
     function path(d) {
         return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
+    }
+
+    // Determines position for path
+    function position(d) {
+        var v = dragging[d];
+        return v == null ? x(d) : v;
     }
 
 }

@@ -27,7 +27,7 @@ parallel.js contains six functions:
 - *mouseOver:* make the line get thicker and brighter when hovering over. Shows countryname next to line.
 - *mouseOut:* removes mouse over effects.
 - *titleParallel:* this function determines the parallel coordinates title depending on the chosen country and year. And whether one or two lines are selected.
-- position:
+- *position:* determines position for path 
 - *path:* returns the path for a given data point
 
 dropdown.js containts four functions:

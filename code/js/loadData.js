@@ -29,7 +29,7 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
 
     // Convert data to numbers when needed
     DALYdata.forEach(function(year) {
-        var yearData = year['data']
+        var yearData = year["data"]
         for (country in yearData) {
             if (yearData.hasOwnProperty(country)) {
                 var d = yearData[country];
@@ -48,8 +48,8 @@ function loadData(error, mapData, data2000, data2005, data2010, data2015) {
     });
 
     // Set begin values for page
-    var disorderChoice = 'All';
-    var countryChoice = 'Netherlands';
+    var disorderChoice = "All";
+    var countryChoice = "Netherlands";
     var countryChoice2;
     var yearChoice = 3;
 
@@ -62,7 +62,7 @@ function updateData (mapData, DALYdata, disorderChoice, countryChoice, yearChoic
     d3.selectAll(".chartVis").remove();
     d3.selectAll(".mapVis").remove();
     d3.selectAll(".parallelVis").remove();
-    d3.selectAll('#dropdownDisorder').remove();
+    d3.selectAll("#dropdownDisorder").remove();
     d3.selectAll("#dropdownCountry0").remove();
     d3.selectAll("#dropdownCountry1").remove();
 

@@ -10,7 +10,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
     var year = yearChoice;
     var disorder = disorderChoice;
     var country = countryChoice;
-    var data = DALYdata[year]['data'];
+    var data = DALYdata[year]["data"];
 
     var margin = {top: 80, right: 10, bottom: 30, left: 10},
         height = 500,
@@ -25,7 +25,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
     var path = d3.geo.path().projection(projection)
 
     // Set colors for the map
-    var colors = ['#efeb00', '#ce0000']
+    var colors = ["#efeb00", "#ce0000"]
 
     // Scale colors logaritmic
     var colorMap = d3.scale.log()
@@ -35,7 +35,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
 
     // Set tooltips
     var tip = d3.tip()
-        .attr('class', 'd3-tip')
+        .attr("class", "d3-tip")
         .offset([0, 0])
         .html(function(d) {
             return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>DALY: </strong><span class='details'>" + disorderByCountry[d.properties.name] + "</span>";
@@ -63,16 +63,16 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
         .data(mapData.features)
         .enter().append("path")
         .attr("d", path)
-        .style("fill", '#a5a4a0')
+        .style("fill", "#a5a4a0")
         .style("fill", function(d) {
             return colorMap(disorderByCountry[d.properties.name]);
         })
-        .style('stroke', 'white')
-        .style('stroke-width', 0.8)
+        .style("stroke", "white")
+        .style("stroke-width", 0.8)
         .style("opacity", 0.8)
 
         // Set mouseover event
-        .on('mouseover', function(d) {
+        .on("mouseover", function(d) {
             tip.show(d);
             d3.select(this)
                 .style("opacity", 1)
@@ -81,7 +81,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
         })
 
         // Set mouseout event
-        .on('mouseout', function(d) {
+        .on("mouseout", function(d) {
             tip.hide(d);
             d3.select(this)
                 .style("opacity", 0.8)
@@ -90,7 +90,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
         })
 
         // Upload data on click for selected country
-        .on('click', function(d) {
+        .on("click", function(d) {
             tip.hide(d);
             var countryChoice = d.properties.name;
             updateData (mapData, DALYdata, disorder, countryChoice, year, countryChoice2);
@@ -116,20 +116,20 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
         // Set the color for the start of the legend
         linearGradient.append("stop")
             .attr("offset", "0%")
-            .attr("stop-color", '#efeb00');
+            .attr("stop-color", "#efeb00");
 
         // Set the color for the end of the legend
         linearGradient.append("stop")
             .attr("offset", "100%")
-            .attr("stop-color", '#ce0000');
+            .attr("stop-color", "#ce0000");
 
         // Draw the rectangle and fill with gradient
         map.append("rect")
         	.attr("width", 450)
         	.attr("height", 12)
-            .attr('x', 400)
-            .attr('y', 430)
-            .style('opacity', 0.8)
+            .attr("x", 400)
+            .attr("y", 430)
+            .style("opacity", 0.8)
         	.style("fill", "url(#linear-gradient)")
 
         // Append text to legend
@@ -137,19 +137,19 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
             .attr("x", 570)
             .attr("y", 420)
             .style("font-size", "14px")
-            .text('*DALY score');
+            .text("*DALY score");
 
         map.append("text")
             .attr("x", 400)
             .attr("y", 455)
             .style("font-size", "14px")
-            .text('0.3');
+            .text("0.3");
 
         map.append("text")
             .attr("x", 810)
             .attr("y", 455)
             .style("font-size", "14px")
-            .text('25710');
+            .text("25710");
     }
 
     function titleMap() {
@@ -167,8 +167,8 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
             yearName = 2015;
         }
 
-        if (country == 'Netherlands') {
-            country = 'The Netherlands';
+        if (country == "Netherlands") {
+            country = "The Netherlands";
         }
 
         // Set title for map and upload with year and disorder

@@ -6,9 +6,11 @@ There is an increase in diagnoses of mental disorders such as depression, autism
 
 The map gives an insight in the prevalence of disorders in different countries, the bar chart shows the changes over time for specific countries and the parallel coordinates shows the comorbidity between disorders.
 
+It is possible to choose different countries, disorders and years, either by clicking on the map or bar chart or by choosing an option from the dropdown menu.
+
 ![image](doc/fullPage.png)
 
-The data is based on DALY score (Disability-Adjusted Life Year), more inforation about the project and DALY score can be found under the 'About' tab.
+The data is based on DALY score (Disability-Adjusted Life Year), more information about the project and DALY score can be found on the 'About' tab.
 
 ![image](doc/aboutPage.png)
 
@@ -18,4 +20,4 @@ Data source for data on disorders: [World Health Organization](http://www.who.in
 JSON file to build the d3 map:  [topojson](https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json)  
 Image for the frontpage in the doc folder: [image](https://res.cloudinary.com/jerrick/image/upload/c_fit,f_auto,fl_progressive,q_auto,w_1100/ohihozl5orbkz6czgegk)
 
-All rights reserved 
+Copyright (c) 2018, Daphne Witmer. Released under the GNU General Public License. All rights reserved

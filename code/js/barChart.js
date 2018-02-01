@@ -12,8 +12,8 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
     var disorderByCountry = []
 
     // Change countryName for the
-    if (country == 'Netherlands') {
-        var countryName = 'The Netherlands';
+    if (country == "Netherlands") {
+        var countryName = "The Netherlands";
     }
     else {
         var countryName = country;
@@ -26,7 +26,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
     // Set the ranges for x and y and domain for x
     var x = d3.scale.ordinal()
         .rangeRoundBands([0, width], .2)
-        .domain([data[0]['year'], data[1]['year'], data[2]['year'], data[3]['year']]);
+        .domain([data[0]["year"], data[1]["year"], data[2]["year"], data[3]["year"]]);
 
     var y = d3.scale.linear()
         .range([height, 0])
@@ -41,7 +41,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         .orient("left")
         .ticks(10);
 
-    var colors = ['#efeb00', '#ce0000']
+    var colors = ["#efeb00", "#ce0000"]
 
     // Set colors for the bars
     var colorMap = d3.scale.log()
@@ -60,7 +60,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
     // Check if data for country is undefined, if not push data to list
     data.forEach(function(d) {
         if (d.data[country] == undefined) {
-            country = 'undefined';
+            country = "undefined";
         }
 
         else {
@@ -69,7 +69,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         }
     });
 
-    if (country != 'undefined') {
+    if (country != "undefined") {
 
         y.domain([0, d3.max(disorderByCountry)]);
 
@@ -96,14 +96,14 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
             .enter().append("rect")
             .attr("class", "bar")
             .attr("x", function(d) { return x(d.year); })
-            .attr('y', 470)
-            .attr('height', 1)
-            .attr('width', x.rangeBand())
-            .attr('fill', function(d) { return colorMap(d.data[country][disorder]); })
-            .style('opacity', 0.8)
-            .on('mouseover', mouseOver)
-            .on('mouseout', mouseOut)
-            .on('click', onClick)
+            .attr("y", 470)
+            .attr("height", 1)
+            .attr("width", x.rangeBand())
+            .attr("fill", function(d) { return colorMap(d.data[country][disorder]); })
+            .style("opacity", 0.8)
+            .on("mouseover", mouseOver)
+            .on("mouseout", mouseOut)
+            .on("click", onClick)
 
         // Draw bars with delay
         bar.transition()
@@ -114,7 +114,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         // Change color of bars and show values when hovering over
         function mouseOver(d) {
             d3.select(this)
-                .style('opacity', 1)
+                .style("opacity", 1)
             chart.append("text")
                 .attr("class", "toDelete")
                 .attr("id", "chartText")
@@ -127,7 +127,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         // Remove mouseOver attributes
         function mouseOut(d) {
             d3.select(this)
-                .style('opacity', 0.8)
+                .style("opacity", 0.8)
             d3.selectAll(".toDelete")
                 .style("visibility", "hidden")
         }
@@ -159,8 +159,8 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
     function titleChart() {
 
         // Define text for title
-        if (country == 'undefined') {
-            var titleText = 'No data available';
+        if (country == "undefined") {
+            var titleText = "No data available";
         }
 
         else {
