@@ -126,9 +126,10 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
     }
 
     if (country2 != undefined) {
-        // Show second selected line
+        // Show second selected line give it another color to seperate the two lines
         d3.selectAll('#'+ data[country2].countryCode)
             .style ("visibility", "visible")
+            .style('stroke', '#d15904')
 
         // SHow country name for line
         parallel.append("text")

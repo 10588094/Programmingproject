@@ -137,7 +137,7 @@ function drawMap(mapData, DALYdata, disorderChoice, countryChoice, yearChoice, c
             .attr("x", 570)
             .attr("y", 420)
             .style("font-size", "14px")
-            .text('DALY score');
+            .text('*DALY score');
 
         map.append("text")
             .attr("x", 400)

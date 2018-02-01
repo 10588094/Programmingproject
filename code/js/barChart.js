@@ -19,9 +19,9 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
         var countryName = country;
     }
 
-    var margin = { top: 70, right: 30, bottom: 40, left: 60 },
+    var margin = { top: 70, right: 30, bottom: 40, left: 70 },
         width = 190,
-        height = 480;
+        height = 470;
 
     // Set the ranges for x and y and domain for x
     var x = d3.scale.ordinal()
@@ -88,7 +88,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
             .attr("x", width - 215)
             .style("text-anchor", "end")
             .style("text-decoration", "bold")
-            .text("DALY")
+            .text("*DALY")
 
         // Initiate bars
         var bar = chart.selectAll(".bar")
@@ -96,7 +96,7 @@ function drawChart(mapData, DALYdata, disorderChoice, countryChoice, yearChoice,
             .enter().append("rect")
             .attr("class", "bar")
             .attr("x", function(d) { return x(d.year); })
-            .attr('y', 480)
+            .attr('y', 470)
             .attr('height', 1)
             .attr('width', x.rangeBand())
             .attr('fill', function(d) { return colorMap(d.data[country][disorder]); })

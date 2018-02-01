@@ -21,6 +21,16 @@
     color: #e0c572;
 }
 
+/* White space underneatch header and above footer */
+.whiteSpace {
+    width:100%;
+    height:70px;
+}
+
+.row p {
+    font-size: 11px;
+}
+
 /* Add a gray background color add padding and transparancy to the footer */
 footer {
     background-color: #191818;

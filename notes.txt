@@ -1,10 +1,11 @@
 - 2e lijn weg wanneer checkbox unchecked
-- tooltip map uitbeeld
+
 - assen parallel
 
 - comments
 - style
 
 - dropdown right aligned
+
 
 screen shot fireshot
