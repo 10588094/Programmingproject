@@ -1,11 +1,11 @@
 # Final Report
 
 ### Disorder Prevalence
-There is an increase in diagnoses of mental disorders such as depression, autism, ADHD and more. Often treatments are not sufficient due to a lack of understanding what these disorders really are. To prevent/treat a disorder it is essential to understand the disorder. An overview of disorder prevalence over the world can help in better understanding the disorder and finding possible causes for the increase in diagnoses.
+There's an increase in diagnoses of mental disorders such as depression, autism and ADHD. Often treatments are not sufficient due to a lack of understanding of what these disorders really are. To prevent/treat a disorder it's essential to understand the disorder. An overview of the prevalence of disorders over the world can help in getting a better understanding and finding possible causes for the increase in diagnoses.
 
 This project gives an overview of disorders over the world. The map gives an insight in the prevalence of disorders in different countries. The bar chart shows the changes over time for specific countries and the parallel coordinates shows the comorbidity between disorders.
 
-![image](doc/FinalScreen1.png)
+![image](doc/fullPage.png)
 
 ### Technical Design
 The code is divided over five JavaScript files. Each visualization has its own file (map.js, barChart.js and parallel.js). There also is a file for the dropwdown menu's (dropdown.js) and a file to load an update data (loadData). Next to the JavaScript files, there are two css files, one for the visualizations (project.css) and one for the page layout and bootstrap elements (page.css). There is one python file that converts CSV to JSON and makes everything the right format (convertCSV2JSON.py).
