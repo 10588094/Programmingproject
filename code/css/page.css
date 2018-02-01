@@ -1,0 +1,38 @@
+/*
+* Daphne Witmer
+* 10588094
+* FIle to style the page and bootstrap elements
+*/
+
+/* Style jumbotron in project.html */
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../../doc/3.jpg);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.jumbotron p {
+    color: #f9de8b;
+}
+
+.jumbotron h1 {
+    color: #e0c572;
+}
+
+/* Add a gray background color add padding and transparancy to the footer */
+footer {
+    background-color: #191818;
+    padding: 25px;
+    opacity: 0.8;
+}
+
+footer p {
+    color: #848484;
+}
+
+/* Make navbar transparent */
+.navbar {
+    opacity: 0.8;
+}

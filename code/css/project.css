@@ -1,85 +1,62 @@
-.jumbotron {
-      margin-bottom: 0px;
-     background-image: url(../../doc/3.jpg);
-      background-position: 0% 25%;
-      background-size: cover;
-      background-repeat: no-repeat;
-  }
+/*
+* Daphne Witmer
+* 10588094
+* File to style the visualizations of the project. First the map, than the
+ barchart and then the parallel. At the end the checkbox.
+* coordinates.
+*/
 
- .jumbotron p {
-     color:#c4a893;
- }
- .jumbotron h1 {
-     color:#aa998c;
- }
-
-/* Add a gray background color and some padding to the footer */
-footer {
-    background-color: #191818;
-    padding: 25px;
-    opacity: 0.8;
-}
-
-footer p {
-    color: #848484;
-}
-
-.navbar {
-    opacity: 0.8;
-}
-
+/* Tooltip for the map */
 .d3-tip {
-  line-height: 1;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
+    line-height: 1;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
 }
 
 /* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
 }
 
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-
+/* Set color of variables in tooltip */
 .details {
     color: #feb24c;
 }
 
-.checkbox {
-    float: left;
-}
-
-#barChart rect {
-    /* fill: #ce5c00; */
-}
-
+/* Set font and textcolor for axis */
 .chartVis text {
     fill: black;
     font: 14px sans-serif;
     text-anchor: middle;
 }
 
+/* Set textcolor for hover over */
 #chartText {
     fill: white;
     font: 9px sans-serif;
 }
 
-/* parallel */
+/* Style axis for barchart and parallel coordinates */
+.axis line, .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+/* Style backgroundlines for the parallel coordinates */
 .background path {
     fill: none;
     stroke: #e07f00;
@@ -87,25 +64,20 @@ footer p {
     shape-rendering: crispEdges;
 }
 
+/* Style foreground line for the parallel coordinates */
 .foreground path {
     fill: none;
     stroke: #e07f00;
     stroke-width: 2;
 }
 
-.brush .extent {
-    fill-opacity: .3;
-    stroke: #fff;
-    shape-rendering: crispEdges;
-}
-
-.axis line, .axis path {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
+/* Style text for axis */
 .axis text {
     text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
     cursor: move;
+}
+
+/* Style checkbox */
+.checkbox {
+    float: left;
 }

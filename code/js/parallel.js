@@ -60,12 +60,12 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         }
     }
 
-  // Extract the list of dimensions and create a scale for each.
-  x.domain(dimensions = d3.keys(dataList[0]).filter(function(d) {
-    return d != "country" && d!= "countryCode" && d != "All" && (y[d] =  d3.scale.log()
-        .base(2)
-        .domain(d3.extent(dataList, function(p) { return p[d]; }))
-        .range([height, 0]));
+    // Extract the list of dimensions and create a scale for each.
+    x.domain(dimensions = d3.keys(dataList[0]).filter(function(d) {
+        return d != "country" && d!= "countryCode" && d != "All" && (y[d] =  d3.scale.log()
+            .base(2)
+            .domain(d3.extent(dataList, function(p) { return p[d]; }))
+            .range([height, 0]));
     }));
 
     // Add grey background lines for context.
@@ -88,42 +88,54 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .attr("id", function(d) { return d.countryCode; })
         .style ("visibility", "hidden")
 
-        function mouseOver(d) {
-             d3.select(this)
-                .style('opacity', 1)
-                .style('stroke-width', 2)
-             parallel.append("text")
-                 .attr("class", "hoverText")
-                 .attr("x", x('Adhd') + 10)
-                 .attr("y", y['Adhd'](d.Adhd))
-                 .style("font-size", "12px")
-                 .text(d.country)
-        }
+    function mouseOver(d) {
+        // Change line when hovering over
+        d3.select(this)
+            .style('opacity', 1)
+            .style('stroke-width', 2)
 
-        function mouseOut(d, i) {
-            d3.select(this)
-             .style('opacity', 0.3)
-            d3.selectAll('.hoverText').remove();
-        }
+        // Show country name when hovering over
+        parallel.append("text")
+             .attr("class", "hoverText")
+             .attr("x", x('Adhd') + 10)
+             .attr("y", y['Adhd'](d.Adhd))
+             .style("font-size", "12px")
+             .text(d.country)
+    }
+
+    function mouseOut(d, i) {
+        // Change line back after hovering
+        d3.select(this)
+            .style('opacity', 0.3)
+
+        // Remove text after hovering
+        d3.selectAll('.hoverText').remove();
+    }
 
     if (countryData != 'undefined') {
+        // Show selected line
         d3.selectAll('#'+ data[country].countryCode)
             .style ("visibility", "visible")
-            parallel.append("text")
-                .attr("x", x('Adhd') + 10)
-                .attr("y", y['Adhd'](data[country].Adhd) )
-                .style("font-size", "12px")
-                .text(country)
+
+        // Show country name for line
+        parallel.append("text")
+            .attr("x", x('Adhd') + 10)
+            .attr("y", y['Adhd'](data[country].Adhd) )
+            .style("font-size", "12px")
+            .text(country)
     }
 
     if (country2 != undefined) {
+        // Show second selected line
         d3.selectAll('#'+ data[country2].countryCode)
             .style ("visibility", "visible")
-            parallel.append("text")
-                .attr("x", x('Adhd') + 10)
-                .attr("y", y['Adhd'](data[country2].Adhd) )
-                .style("font-size", "12px")
-                .text(country2)
+
+        // SHow country name for line
+        parallel.append("text")
+            .attr("x", x('Adhd') + 10)
+            .attr("y", y['Adhd'](data[country2].Adhd) )
+            .style("font-size", "12px")
+            .text(country2)
     }
 
     // Add a group element for each dimension.
@@ -142,16 +154,7 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         .attr("y", -9)
         .text(function(d) { return d; });
 
-    // Add and store a brush for each axis.
-    g.append("g")
-        .attr("class", "brush")
-        .each(function(d) {
-            d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brushstart", brushstart).on("brush", brush));
-        })
-        .selectAll("rect")
-        .attr("x", -8)
-        .attr("width", 16);
-
+    // Make title for parallel coordinates with selected country and year
     parallel.append("text")
         .attr("x", (width / 2))
         .attr("y", 0 - (margin.top / 1.4))
@@ -201,18 +204,4 @@ function drawParallel(mapData, DALYdata, disorderChoice, countryChoice, yearChoi
         return line(dimensions.map(function(p) { return [position(p), y[p](d[p])]; }));
     }
 
-    function brushstart() {
-        d3.event.sourceEvent.stopPropagation();
-    }
-
-    // Handles a brush event, toggling the display of foreground lines.
-    function brush() {
-        var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
-            extents = actives.map(function(p) { return y[p].brush.extent(); });
-        foreground.style("display", function(d) {
-            return actives.every(function(p, i) {
-                return extents[i][0] <= d[p] && d[p] <= extents[i][1];
-            }) ? null : "none";
-        });
-    }
 }
